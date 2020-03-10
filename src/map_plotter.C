@@ -145,7 +145,11 @@ void map_plotter::makeMaps(){
 			fflush(stdout);
 
 		//Skip events without exactly one good track
-			if(ntracks!=1 || npix < 1 || nback < 1 ) continue;
+			if(ntracks!=1 || npix < 1 || nback < 2 ) continue;
+			float xResid = abs(xResidBack - residMeanX.at(i_runrange));
+			float yResid = abs(yResidBack - residMeanY.at(i_runrange));
+
+			if(xResid>residRangeX.at(i_runrange) || yResid>residRangeY.at(i_runrange)) continue;
 
 
 			pair<int,int> nhits_and_channel =nLGADHitsAndChannel();
@@ -784,6 +788,8 @@ void map_plotter::InitBranches(){
 	t->SetBranchStatus("nback", 1); t->SetBranchAddress("nback", &nback);
 	t->SetBranchStatus("npix", 1); t->SetBranchAddress("npix", &npix);
 	t->SetBranchStatus("chi2", 1); t->SetBranchAddress("chi2", &chi2);
+	t->SetBranchStatus("xResidBack", 1); t->SetBranchAddress("xResidBack", &xResidBack);
+	t->SetBranchStatus("yResidBack", 1); t->SetBranchAddress("yResidBack", &yResidBack);
 	t->SetBranchStatus("x_dut", 1); t->SetBranchAddress("x_dut", &x_dut);
 	t->SetBranchStatus("y_dut", 1); t->SetBranchAddress("y_dut", &y_dut);
 	//Run conf info
