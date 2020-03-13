@@ -139,8 +139,8 @@ public:
 	Int_t ntracks;
 	Int_t nback;
 	Int_t npix;
-	Float_t y_dut[3];
-	Float_t x_dut[3];
+	Float_t y_dut[13];
+	Float_t x_dut[13];
 
 	Int_t run;
 	Int_t gconf;
