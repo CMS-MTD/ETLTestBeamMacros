@@ -200,16 +200,14 @@ void map_plotter::makeMaps(){
 			if(ptkindex>=0){
 				
 				if (LP2_20[channel] !=0 && amp[channel] < saturation){ //There is a good event for timing
-<<<<<<< HEAD
+
 					// float delta_t = -LP2_20[channel]+LP2_40[ptkindex]; //fix
 					float delta_t = LP2_20[channel]-LP2_40[ptkindex]; //fix
 					delta_t += 16.1e-9;
 					delta_t *=1e12;
 					delta_t -=7500;
 					// delta_t -=510;
-=======
-					float delta_t = abs(-LP2_20[channel]+LP2_40[ptkindex]); //fix
->>>>>>> ccc820ad91cbe023c4f1bf717af73c9c80cec53a
+
 					v_h_time[pad_index]->Fill(x_adjust,y_adjust,delta_t);
 					v_h_eff_timing[pad_index]->Fill(x_adjust,y_adjust,1);
 
