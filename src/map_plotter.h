@@ -69,6 +69,11 @@ public:
 	static const int nchan_lgad=3;
 	static const int npad=16;//3;//16;
 	vector<float> hitThres;
+	vector<float> residMeanX;
+	vector<float> residRangeX;
+	vector<float> residMeanY;
+	vector<float> residRangeY;
+
 	float photekMin;
 	float photekMax;
 
@@ -129,11 +134,13 @@ public:
 	Float_t LP2_20[nchan];
 	Float_t LP2_40[nchan];
 	Float_t chi2;
+	Float_t xResidBack;
+	Float_t yResidBack;
 	Int_t ntracks;
 	Int_t nback;
 	Int_t npix;
-	Float_t y_dut[3];
-	Float_t x_dut[3];
+	Float_t y_dut[13];
+	Float_t x_dut[13];
 
 	Int_t run;
 	Int_t gconf;

@@ -142,6 +142,7 @@ void map_plotter::makeMaps(){
 	t = new TChain("pulse");
 	for(int i_runrange=0;i_runrange<run_start->size();i_runrange++){
 		for(int irun=run_start->at(i_runrange);irun<=run_end->at(i_runrange);irun++) t->Add(Form("%s/run_scope%i_info.root",chainPath.Data(),irun));
+		
 		InitBranches();
 		uint nentries= t->GetEntries();
 		cout<<"Loaded trees from runs "<<run_start->at(i_runrange)<<" through "<<run_end->at(i_runrange)<<", with "<<nentries<<" events."<<endl;
@@ -154,7 +155,11 @@ void map_plotter::makeMaps(){
 			fflush(stdout);
 
 		//Skip events without exactly one good track
-			if(ntracks!=1 || npix < 1 || nback < 1 ) continue;
+			if(ntracks!=1 || npix < 1 || nback < 2 ) continue;
+			float xResid = abs(xResidBack - residMeanX.at(i_runrange));
+			float yResid = abs(yResidBack - residMeanY.at(i_runrange));
+
+			if(xResid>residRangeX.at(i_runrange) || yResid>residRangeY.at(i_runrange)) continue;
 
 
 			pair<int,int> nhits_and_channel =nLGADHitsAndChannel();
@@ -178,7 +183,7 @@ void map_plotter::makeMaps(){
 		//Fill hists
 
 		//Allow for rotation & offset of coordinates
-			pair<float,float> rotated = Rotate(x_dut[2],y_dut[2],angle->at(i_runrange));
+			pair<float,float> rotated = Rotate(x_dut[10],y_dut[10],angle->at(i_runrange));
 			float x_adjust = rotated.first + x_offset->at(i_runrange);
 			float y_adjust = rotated.second + y_offset->at(i_runrange);
 
@@ -195,12 +200,16 @@ void map_plotter::makeMaps(){
 			if(ptkindex>=0){
 				
 				if (LP2_20[channel] !=0 && amp[channel] < saturation){ //There is a good event for timing
+<<<<<<< HEAD
 					// float delta_t = -LP2_20[channel]+LP2_40[ptkindex]; //fix
 					float delta_t = LP2_20[channel]-LP2_40[ptkindex]; //fix
 					delta_t += 16.1e-9;
 					delta_t *=1e12;
 					delta_t -=7500;
 					// delta_t -=510;
+=======
+					float delta_t = abs(-LP2_20[channel]+LP2_40[ptkindex]); //fix
+>>>>>>> ccc820ad91cbe023c4f1bf717af73c9c80cec53a
 					v_h_time[pad_index]->Fill(x_adjust,y_adjust,delta_t);
 					v_h_eff_timing[pad_index]->Fill(x_adjust,y_adjust,1);
 
@@ -245,6 +254,7 @@ void map_plotter::makeMaps(){
 
 			Convert1D(v_h_eff[ie],v_y_eff[ie],4,false,ie);
 			Convert1D(v_h_eff[ie],v_y_nhits[ie],2,false,ie);
+			cout<<"pad number : "<<ie<<" "<<v_map_nhits[ie]->Integral()<<endl;	
 			v_h_eff[ie]->Write();
 			v_h_eff_timing[ie]->Write();
 			v_map_eff[ie]->Write();
@@ -559,6 +569,7 @@ void map_plotter::FillSummaryMapCoarse(TH2F* h_target, vector<TH2F*> v_map, TH2F
 				int source_bin=v_map[ipad]->FindBin(x,y);
 				int eff_bin=effmap->FindBin(x,y);
 				if(effmap->GetBinContent(eff_bin)>0.4){
+
 					h_target->SetBinContent(ix,iy,scale_factor[ipad]*v_map[ipad]->GetBinContent(source_bin));
 				}
 				// else{//if efficiency < 50%, allow if both of the neighbors along x or y are > 50%
@@ -602,7 +613,7 @@ void map_plotter::FillSummary1DCoarse(vector<vector<TH1F*> > v_1D, vector<vector
 			coarse_bin = v_1D[1][islice]->FindBin(y);
 		}
 		int bin_map = channel_map->FindBin(x,y);
-		if(eff1d[0][islice]->GetBinContent(eff_bin)>0.5 && channel_map->GetBinContent(bin_map) > 0){
+		if(eff1d[0][islice]->GetBinContent(eff_bin)>0.15 && channel_map->GetBinContent(bin_map) > 0){
 			v_1D[0][islice]->SetBinContent(ix,v_1D[channel_map->GetBinContent(bin_map)][islice]->GetBinContent(coarse_bin));
 			v_1D[0][islice]->SetBinError(ix,v_1D[channel_map->GetBinContent(bin_map)][islice]->GetBinError(coarse_bin));
 		}
@@ -810,6 +821,8 @@ void map_plotter::InitBranches(){
 	t->SetBranchStatus("nback", 1); t->SetBranchAddress("nback", &nback);
 	t->SetBranchStatus("npix", 1); t->SetBranchAddress("npix", &npix);
 	t->SetBranchStatus("chi2", 1); t->SetBranchAddress("chi2", &chi2);
+	t->SetBranchStatus("xResidBack", 1); t->SetBranchAddress("xResidBack", &xResidBack);
+	t->SetBranchStatus("yResidBack", 1); t->SetBranchAddress("yResidBack", &yResidBack);
 	t->SetBranchStatus("x_dut", 1); t->SetBranchAddress("x_dut", &x_dut);
 	t->SetBranchStatus("y_dut", 1); t->SetBranchAddress("y_dut", &y_dut);
 	//Run conf info
