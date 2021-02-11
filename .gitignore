@@ -1,2 +1,4 @@
 output/*
 run/*
+*.pdf
+*.root

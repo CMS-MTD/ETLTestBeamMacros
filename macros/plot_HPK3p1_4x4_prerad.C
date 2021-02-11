@@ -26,10 +26,12 @@ int main(int argc, char **argv)
 
 	//Define amplitude, time binning and range, and scope saturation.
 	mp.saturation =640.;
-	mp.nbinsAmp=60;
+	mp.nbinsAmp=50;
 	mp.minAmp=0; mp.maxAmp=mp.saturation;
 	mp.nbinsTime=60;
-	mp.minTime=7.2e-9; mp.maxTime=8.8e-9;
+	mp.minTime=0; mp.maxTime=1200;
+	// mp.minTime=7.2e-9; mp.maxTime=8.8e-9;
+	// mp.minTime=-800; mp.maxTime=800;
 
 	//define threshold for LGAD hits, and range for photek
 	mp.hitThres=vector<float>(mp.npad+1,40.);
@@ -43,10 +45,13 @@ int main(int argc, char **argv)
 	mp.ySliceMax={33,34,35,36};
 
 	//Specify range for colz maps. -1 is ignored.
-	mp.zMinEff=-1.; mp.zMaxEff=-1.; 
+	// mp.zMinEff=0.6; mp.zMaxEff=-1.; 
+	mp.zMinEff=0.; mp.zMaxEff=-1.; 
 	mp.zMinGain=70.; mp.zMaxGain=110.; 
-	mp.zMinSigmat=0.01e-9; mp.zMaxSigmat=0.08e-9; 
-	mp.zMinDeltat=7.75e-9; mp.zMaxDeltat=-1.;
+	// mp.zMinSigmat=0.01e-9; mp.zMaxSigmat=0.08e-9; 
+	mp.zMinSigmat=10; mp.zMaxSigmat=80; 
+	mp.zMinDeltat=350; mp.zMaxDeltat=725;
+	// mp.zMinDeltat=-300; mp.zMaxDeltat=-1.;
 
 
 	//Do everything

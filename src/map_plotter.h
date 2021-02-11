@@ -155,11 +155,15 @@ public:
 	vector<TH2F*> v_map_deltat;
 	TH2F* map_deltat_normalized;
 	TH2F* map_deltat_normalized_aligned;
+	// TH1F* deltat_metal;
+	// TH1F* deltat_nometal;
+
 	vector<TH2F*> v_map_sigmat;
 
 	TH2F * cosmetic_map;
 
 	vector<vector<TH1F*> > v_x_eff;
+	// vector<vector<TGraphAsymmErrors*> > v_x_eff_graph;
 	vector<vector<TH1F*> > v_x_nhits;
 	vector<vector<TH1F*> > v_x_amp;
 	vector<vector<TH1F*> > v_x_deltat;

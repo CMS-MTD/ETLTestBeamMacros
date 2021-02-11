@@ -11,6 +11,15 @@ void map_plotter::makeMaps(){
 	TString outFileName = Form("%s/%s.root",outDir.Data(),tag.Data());
 	outRootFile = new TFile(outFileName,"recreate");
 
+	// for(int i=0;i<16;i++) {
+	// 	deltat_metal.push_back(new TH1F(Form("deltat_metal%i",i),"",25,500,550));
+	// 	deltat_nometal.push_back(new TH1F(Form("deltat_nometal%i",i),"",25,500,550));
+	// }
+	
+	// deltat_metal = new TH1F("deltat_metal","",25,500,550);
+	// deltat_nometal = new TH1F("deltat_nometal","",25,500,550);
+	
+
 	channel_map = new TH2F("channel_map","channel map",nbinsX,minX,maxX,nbinsY,minY,maxY);
 	for(uint ib = 0; ib < npad+1; ib++){
 		if (ib>0) outRootFile->mkdir(Form("pad%i",ib));
@@ -186,9 +195,15 @@ void map_plotter::makeMaps(){
 			if(ptkindex>=0){
 				
 				if (LP2_20[channel] !=0 && amp[channel] < saturation){ //There is a good event for timing
-					float delta_t = -LP2_20[channel]+LP2_40[ptkindex]; //fix
+					// float delta_t = -LP2_20[channel]+LP2_40[ptkindex]; //fix
+					float delta_t = LP2_20[channel]-LP2_40[ptkindex]; //fix
+					delta_t += 16.1e-9;
+					delta_t *=1e12;
+					delta_t -=7500;
+					// delta_t -=510;
 					v_h_time[pad_index]->Fill(x_adjust,y_adjust,delta_t);
 					v_h_eff_timing[pad_index]->Fill(x_adjust,y_adjust,1);
+
 				}
 				else{//There is a hit based on amplitude, and a photek hit, but LGAD signal not adequate for timing
 						//Record as miss for all channels.
@@ -278,22 +293,22 @@ void map_plotter::makeMaps(){
 		FillChannelMap(channel_map, v_map_eff);
 		channel_map->Write();
 
-		CosmeticMap(v_map_eff[0],Form("Hit efficiency, %.0f mV",hitThres[0]));
+		CosmeticMap(v_map_eff[0],Form("Hit efficiency, %.0f mV threshold",hitThres[0]));
 		FillSummaryMap(v_map_eff,channel_map);
 		
 		CosmeticMap(v_map_eff_timing[0],Form("Timestamp reco efficiency, %.0f mV",hitThres[0]));
 		FillSummaryMap(v_map_eff_timing,channel_map);
 		
-		CosmeticMap(v_map_amp[0],"Most probable value [mV]");
+		CosmeticMap(v_map_amp[0],"Most probable amplitude [mV]");
 		FillSummaryMapCoarse(v_map_amp[0],v_map_amp,v_map_eff[0],channel_map);
 		
-		CosmeticMap(v_map_sigmat[0],"Time resolution [s]");
+		CosmeticMap(v_map_sigmat[0],"Time resolution [ps]");
 		FillSummaryMapCoarse(v_map_sigmat[0],v_map_sigmat,v_map_eff[0],channel_map);
 		
-		CosmeticMap(v_map_deltat[0],"#DeltaT w.r.t. MCP [s]");
+		CosmeticMap(v_map_deltat[0],"#DeltaT(LGAD - MCP) [ps]");
 		FillSummaryMapCoarse(v_map_deltat[0],v_map_deltat,v_map_eff[0],channel_map);
 
-		CosmeticMap(map_deltat_normalized,"#DeltaT w.r.t. MCP [s]");
+		CosmeticMap(map_deltat_normalized,"#DeltaT(LGAD - MCP) [ps]");
 		FillSummaryMapCoarse(map_deltat_normalized, v_map_deltat,v_map_eff[0],channel_map,true);
 		
 		
@@ -322,9 +337,9 @@ void map_plotter::makeMaps(){
 			PrintSummary1D(v_x_deltat[0][i],Form("x_deltat%i",i));
 		}
 
-		CosmeticMap(map_deltat_normalized_aligned,"#DeltaT w.r.t. MCP [s]");
+		CosmeticMap(map_deltat_normalized_aligned,"#DeltaT(LGAD - MCP) [ps]");
 		FillAligned(map_deltat_normalized_aligned,map_deltat_normalized, 30, 10, 18, 25);
-		PrintSummaryMap(map_deltat_normalized_aligned,"map_deltat_norm_aligned",8.06e-9,8.088e-9);
+		PrintSummaryMap(map_deltat_normalized_aligned,"map_deltat_norm_aligned",510,535);
 
 
 		//Fill distributions for boxes 
@@ -407,6 +422,7 @@ void map_plotter::makeMaps(){
 }
 void map_plotter::PrintSummaryMap(TH2F * h2,TString name, float min, float max){
 
+
 	TCanvas c1("","",1100,500);
 	c1.SetLeftMargin(0.07);
 	c1.SetRightMargin(0.15);
@@ -414,8 +430,11 @@ void map_plotter::PrintSummaryMap(TH2F * h2,TString name, float min, float max){
 	if(min>=0) h2->SetMinimum(min);
 	if(max>=0) h2->SetMaximum(max);
 	h2->Draw("colz");
-	DrawCMS();
+	// DrawCMS();
+	DrawProton();
+	DrawTemp();
 	c1.Print(Form("%s/%s_%s.pdf",outDir.Data(),name.Data(),tag.Data()));
+	c1.Print(Form("%s/%s_%s.root",outDir.Data(),name.Data(),tag.Data()));
 
 }
 void map_plotter::PrintSummary1D(TH1F * h,TString name){
@@ -427,8 +446,11 @@ void map_plotter::PrintSummary1D(TH1F * h,TString name){
 	// if(min>=0) h2->SetMinimum(min);
 	// if(max>=0) h2->SetMaximum(max);
 	h->Draw();
-	DrawCMS();
+	// DrawCMS();
+	DrawProton(true);
+	DrawTemp(true);
 	c1.Print(Form("%s/%s_%s.pdf",outDir.Data(),name.Data(),tag.Data()));
+	c1.Print(Form("%s/%s_%s.root",outDir.Data(),name.Data(),tag.Data()));
 
 }
 
@@ -528,13 +550,15 @@ void map_plotter::FillSummaryMapCoarse(TH2F* h_target, vector<TH2F*> v_map, TH2F
 	for(uint ix=0;ix<h_target->GetNbinsX();ix++){
 		float x = h_target->GetXaxis()->GetBinCenter(ix);
 		for(uint iy=0;iy<h_target->GetNbinsY();iy++){
+			//For hpk3p1 paper:
+			if(iy>=64) continue;
 			float y = h_target->GetYaxis()->GetBinCenter(iy);
 			int bin_map = channel_map->FindBin(x,y);
 			if(channel_map->GetBinContent(bin_map) > 0){
 				int ipad = channel_map->GetBinContent(bin_map);
 				int source_bin=v_map[ipad]->FindBin(x,y);
 				int eff_bin=effmap->FindBin(x,y);
-				if(effmap->GetBinContent(eff_bin)>0.5){
+				if(effmap->GetBinContent(eff_bin)>0.4){
 					h_target->SetBinContent(ix,iy,scale_factor[ipad]*v_map[ipad]->GetBinContent(source_bin));
 				}
 				// else{//if efficiency < 50%, allow if both of the neighbors along x or y are > 50%
@@ -580,6 +604,7 @@ void map_plotter::FillSummary1DCoarse(vector<vector<TH1F*> > v_1D, vector<vector
 		int bin_map = channel_map->FindBin(x,y);
 		if(eff1d[0][islice]->GetBinContent(eff_bin)>0.5 && channel_map->GetBinContent(bin_map) > 0){
 			v_1D[0][islice]->SetBinContent(ix,v_1D[channel_map->GetBinContent(bin_map)][islice]->GetBinContent(coarse_bin));
+			v_1D[0][islice]->SetBinError(ix,v_1D[channel_map->GetBinContent(bin_map)][islice]->GetBinError(coarse_bin));
 		}
 		
 	}
@@ -609,6 +634,7 @@ void map_plotter::FillSummary1D(vector<vector<TH1F*> > v_1D, TH2F * channel_map,
 		int bin_map = channel_map->FindBin(x,y);
 		if(channel_map->GetBinContent(bin_map) > 0){
 			v_1D[0][islice]->SetBinContent(ix,v_1D[channel_map->GetBinContent(bin_map)][islice]->GetBinContent(ix));
+			v_1D[0][islice]->SetBinError(ix,v_1D[channel_map->GetBinContent(bin_map)][islice]->GetBinError(ix));
 		}
 		
 	}
