@@ -75,23 +75,27 @@ void map_plotter::makeMaps(){
 		vector<TH1F*> these_x_sigmat;
 		for(int islice=0;islice<ySliceMin.size();islice++){
 			name = Form("h_x_eff_%i_%i",ib,islice);
-			title = Form("%0.1f < y < %0.1f;x [mm]; Efficiency;",ySliceMin[islice],ySliceMax[islice]);
+			// title = Form("%0.1f < y < %0.1f;x [mm]; Efficiency;",ySliceMin[islice],ySliceMax[islice]);
+			title = Form(";x [mm]; Efficiency;");
 			these_x_eff.push_back(new TH1F(name,title,nbinsX,minX,maxX));
 			name = Form("h_x_nhits_%i_%i",ib,islice);
 			these_x_nhits.push_back(new TH1F(name,name,nbinsX,minX,maxX));
 
 			name = Form("h_x_amp_%i_%i",ib,islice);
-			title = Form("%0.1f < y < %0.1f;x [mm]; MPV [mV];",ySliceMin[islice],ySliceMax[islice]);
+			// title = Form("%0.1f < y < %0.1f;x [mm]; MPV [mV];",ySliceMin[islice],ySliceMax[islice]);
+			title = Form(";x [mm]; MPV [mV];");
 			if (ib==0) these_x_amp.push_back(new TH1F(name,title,nbinsX,minX,maxX));
 			else these_x_amp.push_back(new TH1F(name,title,nbinsX/rebinFactor,minX,maxX));
 
 			name = Form("h_x_deltat_%i_%i",ib,islice);
-			title = Form("%0.1f < y < %0.1f;x [mm]; DeltaT[s];",ySliceMin[islice],ySliceMax[islice]);
+			// title = Form("%0.1f < y < %0.1f;x [mm]; DeltaT[s];",ySliceMin[islice],ySliceMax[islice]);
+			title = Form(";x [mm]; DeltaT[s];");
 			if (ib==0) these_x_deltat.push_back(new TH1F(name,title,nbinsX,minX,maxX));
 			else these_x_deltat.push_back(new TH1F(name,title,nbinsX/rebinFactor,minX,maxX));
 
 			name = Form("h_x_sigmat_%i_%i",ib,islice);
-			title = Form("%0.1f < y < %0.1f;x [mm]; Time resolution [s];",ySliceMin[islice],ySliceMax[islice]);
+			// title = Form("%0.1f < y < %0.1f;x [mm]; Time resolution [s];",ySliceMin[islice],ySliceMax[islice]);
+			title = Form(";x [mm]; Time resolution [s];");
 			if (ib==0) these_x_sigmat.push_back(new TH1F(name,title,nbinsX,minX,maxX));
 			else these_x_sigmat.push_back(new TH1F(name,title,nbinsX/rebinFactor,minX,maxX));
 
@@ -155,11 +159,11 @@ void map_plotter::makeMaps(){
 			fflush(stdout);
 
 		//Skip events without exactly one good track
-			if(ntracks!=1 || npix < 1 || nback < 2 ) continue;
-			float xResid = abs(xResidBack - residMeanX.at(i_runrange));
-			float yResid = abs(yResidBack - residMeanY.at(i_runrange));
+			if(ntracks!=1 || npix < 1 || nback < 1 ) continue;
+			// float xResid = abs(xResidBack - residMeanX.at(i_runrange));
+			// float yResid = abs(yResidBack - residMeanY.at(i_runrange));
 
-			if(xResid>residRangeX.at(i_runrange) || yResid>residRangeY.at(i_runrange)) continue;
+			// if(xResid>residRangeX.at(i_runrange) || yResid>residRangeY.at(i_runrange)) continue;
 
 
 			pair<int,int> nhits_and_channel =nLGADHitsAndChannel();
@@ -183,7 +187,7 @@ void map_plotter::makeMaps(){
 		//Fill hists
 
 		//Allow for rotation & offset of coordinates
-			pair<float,float> rotated = Rotate(x_dut[10],y_dut[10],angle->at(i_runrange));
+			pair<float,float> rotated = Rotate(x_dut[2],y_dut[2],angle->at(i_runrange));
 			float x_adjust = rotated.first + x_offset->at(i_runrange);
 			float y_adjust = rotated.second + y_offset->at(i_runrange);
 
@@ -322,11 +326,14 @@ void map_plotter::makeMaps(){
 		
 
 		FillSummary1D(v_x_eff,channel_map,true); 
+		FillSummary1D(v_x_nhits,channel_map,true); 
 		FillSummary1DCoarse(v_x_amp,v_x_eff,channel_map,true);
 		FillSummary1DCoarse(v_x_sigmat,v_x_eff,channel_map,true);
 		FillSummary1DCoarse(v_x_deltat,v_x_eff,channel_map,true);
 
+
 		FillSummary1D(v_y_eff,channel_map,false);
+		FillSummary1D(v_y_nhits,channel_map,false);
 		FillSummary1DCoarse(v_y_amp,v_y_eff,channel_map,false);
 		FillSummary1DCoarse(v_y_sigmat,v_y_eff,channel_map,false);
 		FillSummary1DCoarse(v_y_deltat,v_y_eff,channel_map,false);
@@ -338,8 +345,12 @@ void map_plotter::makeMaps(){
 		PrintSummaryMap(v_map_deltat[0],"map_deltat",zMinDeltat,zMaxDeltat);
 		PrintSummaryMap(map_deltat_normalized,"map_deltat_norm",zMinDeltat,zMaxDeltat);
 		
+		ConvertTH1toTGraphAsymmErrors(v_x_eff[0],v_x_nhits[0],v_x_eff_graph);
 		for(int i=0;i<xSliceMin.size();i++){
 			PrintSummary1D(v_x_eff[0][i],Form("x_efficiency%i",i));
+			// cout<<"Printing graph"<<endl;
+			// PrintSummaryGraph(v_x_eff_graph[i],Form("x_efficiency_gr%i",i));
+
 			PrintSummary1D(v_x_amp[0][i],Form("x_mpv%i",i));
 			PrintSummary1D(v_x_sigmat[0][i],Form("x_sigmat%i",i));
 			PrintSummary1D(v_x_deltat[0][i],Form("x_deltat%i",i));
@@ -451,8 +462,12 @@ void map_plotter::PrintSummary1D(TH1F * h,TString name){
 	c1.SetLeftMargin(0.1);
 	c1.SetRightMargin(0.08);
 	c1.SetBottomMargin(0.13);
+	h->SetMarkerStyle(20);
+	h->SetMarkerSize(0.6);
+	h->SetMarkerColor(kBlue+2);
 	// if(min>=0) h2->SetMinimum(min);
 	// if(max>=0) h2->SetMaximum(max);
+	// h->SetTitle("");
 	h->Draw();
 	// DrawCMS();
 	DrawProton(true);
@@ -461,7 +476,33 @@ void map_plotter::PrintSummary1D(TH1F * h,TString name){
 	c1.Print(Form("%s/%s_%s.root",outDir.Data(),name.Data(),tag.Data()));
 
 }
+void map_plotter::PrintSummaryGraph(TGraphAsymmErrors * g,TString name){
 
+	TCanvas c1("","",1050,500);
+	c1.SetLeftMargin(0.1);
+	c1.SetRightMargin(0.08);
+	c1.SetBottomMargin(0.13);
+	TH1F * hfiller = new TH1F("filler","",nbinsX,minX,maxX);
+	Cosmetic1D(hfiller);
+	hfiller->SetTitle(";x [mm];Efficiency");
+	hfiller->Draw();
+	// if(min>=0) h2->SetMinimum(min);
+	// if(max>=0) h2->SetMaximum(max);
+	g->SetTitle("");
+	g->SetLineWidth(1);
+
+	g->SetMarkerStyle(20);
+	g->SetMarkerSize(0.6);
+	g->SetMarkerColor(kBlue+2);	
+	g->SetLineColor(kBlue+2);
+	g->Draw("epz same");
+	// DrawCMS();
+	DrawProton(true);
+	DrawTemp(true);
+	c1.Print(Form("%s/%s_%s.pdf",outDir.Data(),name.Data(),tag.Data()));
+	c1.Print(Form("%s/%s_%s.root",outDir.Data(),name.Data(),tag.Data()));
+
+}
 
 void map_plotter::CleanMap(TH2F * map, float xmin, float xmax, float ymin, float ymax, bool scale){
 	for(uint ix=0;ix<map->GetNbinsX();ix++){
@@ -719,6 +760,42 @@ void map_plotter::Convert1D(TH3F * h3, vector<TH1F *> h1, int type, bool isX, in
 	}
 }
 
+void map_plotter::ConvertTH1toTGraphAsymmErrors(vector<TH1F*> v_h, vector<TH1F*> v_nhits, vector<TGraphAsymmErrors*> v_g){
+	
+	for(uint islice =0;islice < v_h.size(); islice++){
+
+    int n = v_h[islice]->GetNbinsX();
+	float x[500]; float y[500]; float exl[500]; float exh[500]; float eyl[500]; float eyh[500];
+	for(int i=1;i<=n;i++){
+		int npass = v_nhits[islice]->GetBinContent(i);
+		int ntotal = npass/v_h[islice]->GetBinContent(i);
+		float width = v_nhits[islice]->GetBinWidth(i);
+		x[i-1] = v_h[islice]->GetBinCenter(i);
+		if(npass>0){
+			vector<float> effs = GetEffandError(npass, ntotal);
+
+			y[i-1] = effs[0];
+			eyl[i-1] = effs[1];
+			eyh[i-1]= effs[2];
+		}
+		else{
+			y[i-1] = 0;
+			eyl[i-1] = 0;
+			eyh[i-1]= 0;
+		}
+
+		exl[i-1]=0.5*width;
+		exh[i-1]=0.5*width;
+	}
+	TGraphAsymmErrors * g = new TGraphAsymmErrors(n,x,y,exl,exh,eyl,eyh);
+	g->Write();
+	PrintSummaryGraph(g,Form("effgraph%i",islice));
+
+
+	v_g.push_back(g);
+}
+}
+
 void map_plotter::ConvertMap(TH3F * h3, TH2F * h2, int type, int pad){
 	TString hist_tag;
 	if(type==1) hist_tag = "dt";
@@ -819,8 +896,8 @@ void map_plotter::InitBranches(){
 	t->SetBranchStatus("nback", 1); t->SetBranchAddress("nback", &nback);
 	t->SetBranchStatus("npix", 1); t->SetBranchAddress("npix", &npix);
 	t->SetBranchStatus("chi2", 1); t->SetBranchAddress("chi2", &chi2);
-	t->SetBranchStatus("xResidBack", 1); t->SetBranchAddress("xResidBack", &xResidBack);
-	t->SetBranchStatus("yResidBack", 1); t->SetBranchAddress("yResidBack", &yResidBack);
+	// t->SetBranchStatus("xResidBack", 1); t->SetBranchAddress("xResidBack", &xResidBack);
+	// t->SetBranchStatus("yResidBack", 1); t->SetBranchAddress("yResidBack", &yResidBack);
 	t->SetBranchStatus("x_dut", 1); t->SetBranchAddress("x_dut", &x_dut);
 	t->SetBranchStatus("y_dut", 1); t->SetBranchAddress("y_dut", &y_dut);
 	//Run conf info

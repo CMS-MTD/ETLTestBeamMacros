@@ -1,4 +1,5 @@
 using namespace std;
+#include "TEfficiency.h"
 
 
 pair<float,float> Rotate(float x0, float y0, float angle);
@@ -6,6 +7,7 @@ void CosmeticMap(TH2F * map, TString zaxis);
 void Cosmetic1D(TH1F * h);
 void DrawCMS(bool is1D=false);
 void DrawProton(bool is1D=false);
+vector<float> GetEffandError(int pass, int total);
 void DrawTemp(bool is1D=false);
 TF1 *langaufit(TH1F *his, Double_t *fitrange, Double_t *startvalues, Double_t *parlimitslo, Double_t *parlimitshi, Double_t *fitparams, Double_t *fiterrors, Double_t *ChiSqr, Int_t *NDF);
 Double_t langaufun(Double_t *x, Double_t *par);
@@ -14,7 +16,7 @@ pair<float,float> GetSigmaT(TH1F * h);
 
 
 void Cosmetic1D(TH1F * h){
-	h->SetLineWidth(2);
+	h->SetLineWidth(1);
 	h->SetStats(0);
 	h->GetXaxis()->SetTitleSize(0.05);
 	h->GetYaxis()->SetTitleSize(0.05);
@@ -78,6 +80,21 @@ pair<float,float> GetSigmaT(TH1F * h, float minTime, float maxTime){
 	f1->Delete();
 
 	return pair<float,float> {sigma,e_sigma};
+
+}
+
+vector<float> GetEffandError(int pass, int total){
+  TEfficiency teff("teff","",2,0,2);
+  teff.SetStatisticOption(TEfficiency::kBUniform);
+  teff.SetPosteriorMode();
+  teff.SetTotalEvents(1,total);
+  teff.SetPassedEvents(1,pass);
+  vector<float> results;
+  results.push_back(teff.GetEfficiency(1));
+  results.push_back(teff.GetEfficiencyErrorLow(1));
+  results.push_back(teff.GetEfficiencyErrorUp(1));
+
+  return results;
 
 }
 

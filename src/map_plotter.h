@@ -30,6 +30,7 @@
 #include "TGaxis.h"
 #include "TLegend.h"
 #include "TColor.h"
+#include "TGraphAsymmErrors.h"
 
 #include "utilities.C"
 using namespace std;
@@ -53,12 +54,15 @@ public:
 
 	void ConvertMap(TH3F * h3, TH2F * h2, int type, int pad);
 	void Convert1D(TH3F * h3, vector<TH1F*> h1, int type, bool isX, int pad);
+	void ConvertTH1toTGraphAsymmErrors(vector<TH1F*> v_x_eff, vector<TH1F*> v_x_nhits,vector<TGraphAsymmErrors*> v_x_eff_graph);
+
 	void FillBox(TH3F * h3, TH1D * h1, int ibox);
 	void CleanMap(TH2F * map, float xmin, float xmax, float ymin, float ymax, bool scale);
 	float GetEff(TH3F * h3, int x_lo, int x_hi, int y_lo, int y_hi, int den=0);
 
 	void PrintSummaryMap(TH2F * h2,TString name,float min, float max);
 	void PrintSummary1D(TH1F * h,TString name);
+	void PrintSummaryGraph(TGraphAsymmErrors * g,TString name);
 	TString tag;
 	TString outDir;
 	TString chainPath;
@@ -170,7 +174,7 @@ public:
 	TH2F * cosmetic_map;
 
 	vector<vector<TH1F*> > v_x_eff;
-	// vector<vector<TGraphAsymmErrors*> > v_x_eff_graph;
+    vector<TGraphAsymmErrors*> v_x_eff_graph;
 	vector<vector<TH1F*> > v_x_nhits;
 	vector<vector<TH1F*> > v_x_amp;
 	vector<vector<TH1F*> > v_x_deltat;
