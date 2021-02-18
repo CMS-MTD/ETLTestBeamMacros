@@ -10,9 +10,9 @@ condorMode=True
 globalConfFile='Configurations-Grid view.csv'
 keySightConfFile='ConfigurationKeySightScope-Grid view.csv'
 caenConfFile='ConfigurationCAENHV-Grid view.csv'
-
-scopeRecoDir = 'root://cmseos.fnal.gov//store/group/cmstestbeam/2019_04_April_CMSTiming/KeySightScope/RecoData/TimingDAQRECO/RecoWithTracks/v1/'
-outDir = 'root://cmseos.fnal.gov://store/group/cmstestbeam/2019_04_April_CMSTiming/KeySightScope/RecoData/TimingDAQRECO/RecoWithTracks/v1/confInfo/'
+recoVersion = "v9"
+scopeRecoDir = 'root://cmseos.fnal.gov//store/group/cmstestbeam/2020_02_CMSTiming/KeySightScope/RecoData/TimingDAQRECO/RecoWithTracks/%s/'%recoVersion
+outDir = 'root://cmseos.fnal.gov://store/group/cmstestbeam/2020_02_CMSTiming/KeySightScope/RecoData/TimingDAQRECO/RecoWithTracks/%s/confInfo/'%recoVersion
 
 def getConfs(runNumber):
     globConf=-1
@@ -21,15 +21,18 @@ def getConfs(runNumber):
     with open(globalConfFile) as csvfile:
         next(csvfile) # skip header
         for line in csvfile:
+            # print line
             vals = line.strip().split(',')
             nvals = len(vals)
-           # print "conf %s, columns %i" %(vals[0],nvals)
+            # print "conf %s, columns %i" %(vals[0],nvals)
             if nvals < 11: continue ## no runs exist
-            runListThisConf = [int(x.replace('"','')) for x in vals[8:nvals-1]]
+            # print vals
+            for x in vals[10:nvals-2]: print x.replace('"','')
+            runListThisConf = [int(x.replace('"','')) for x in vals[10:nvals-2]]
             if runNumber in runListThisConf:
                 globConf=int(vals[0])
-                scopeConf = int(vals[2])
-                caenConf = int(vals[4])
+                scopeConf = int(vals[1])
+                caenConf = int(vals[2])
                 break
     csvfile.close()
     print "Run %i: globConf %i, scopeConf %i, caenConf %i" % (runNumber,globConf,scopeConf,caenConf)
@@ -74,16 +77,16 @@ def getHVMap(caenConf):
            # print "conf %s, columns %i" %(vals[0],nvals)
             #print vals
             if int(vals[0]) == caenConf:               
-               # print vals
+                print vals
                 for i in range(7):                   
-                    if vals[2*i+1] != '':
-                        sensors.append(vals[2*i+1].replace('"',''))
-                        if vals[2*i+2] != '':
-                            HVs.append(int(vals[2*i+2]))
+                    if vals[2*i+4] != '':
+                        sensors.append(vals[2*i+4].replace('"',''))
+                        if vals[2*i+5] != '':
+                            HVs.append(int(vals[2*i+5]))
                         else: HVs.append(-1)
                 break
     csvfile.close()
-    #print sensors, pads
+    # print sensors, pads
     return(sensors,HVs)
 
 
@@ -143,13 +146,17 @@ if __name__ == '__main__':
         cmd = "xrdcp %s %s" % (infileName,outfileName)
         print cmd
         os.system(cmd)
-    else: outfileName = outDir+"run_scope%i_info.root" % runNumber
+    else: 
+        outfileName = outDir+"run_scope%i_info.root" % runNumber
+        #cmd = "xrdcp %s %s" % (infileName,outfileName)
+        #print cmd
+        #os.system(cmd)
 
     print 'Processing file:', outfileName
     processRun(runNumber,outfileName)
 
     if condorMode:
-        cmd = "xrdcp %s %s" % (outfileName,outDir)
+        cmd = "xrdcp -f %s %s" % (outfileName,outDir)
         print cmd
         os.system(cmd)
 

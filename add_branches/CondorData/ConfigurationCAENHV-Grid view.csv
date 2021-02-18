@@ -1,57 +1,51 @@
-﻿Bias,Sensor HV0,HV0,Sensor HV1,HV1,Sensor HV2,HV2,Sensor HV3,HV3,Sensor HV4,HV4,Sensor HV5,HV5,Sensor HV6,HV6,Sensor HV7,HV7,Notes,Attachments,Run Table,Configurations
-1,FBK 2x8 1,360,FBK 2x8 1,360,FBK 2x8 1,360,FBK 2x8 1,360,FBK 2x8 1,360,FBK 2x8 1,360,FBK 2x8 1,360,FBK 2x8 1,360,,,,1
-2,,,,,,,,,,,,,,,,,,,,
-3,,,,,,,,,,,,,,,,,,,,
-4,,,,,,,,,,,,,,,,,,,,
-5,,,,,,,"""HPK 3.1 4x4 pre-rad, UCSC""",160,"""HPK 3.1 4x4 8E14, UCSC""",400,"""HPK 3.1 4x4 1.5E15, UCSC""",400,Photek,4200,,,,,,12
-6,,,,,,,"""HPK 3.1 4x4 pre-rad, UCSC""",175,"""HPK 3.1 4x4 8E14, UCSC""",450,"""HPK 3.1 4x4 1.5E15, UCSC""",450,,,,,,,,
-7,,,,,,,"""HPK 3.1 4x4 pre-rad, UCSC""",175,"""HPK 3.1 4x4 8E14, UCSC""",450,"""HPK 3.1 4x4 1.5E15, UCSC""",450,Photek,4200,,,,,,13
-8,,,,,,,"""HPK 3.1 4x4 pre-rad, UCSC""",185,"""HPK 3.1 4x4 8E14, UCSC""",500,"""HPK 3.1 4x4 1.5E15, UCSC""",500,Photek,4200,,,,,,14
-9,,,,,,,"""HPK 3.1 4x4 pre-rad, UCSC""",185,"""HPK 3.1 4x4 8E14, UCSC""",550,"""HPK 3.1 4x4 1.5E15, UCSC""",550,Photek,4200,,,,,,15
-10,,,,,,,"""HPK 3.1 4x4 pre-rad, UCSC""",195,"""HPK 3.1 4x4 8E14, UCSC""",575,"""HPK 3.1 4x4 1.5E15, UCSC""",575,Photek,4200,,,,,,16
-11,Photek,4200,,,,,,,,,,,Photek,4200,,,,,,18
-12,Photek,4500,,,,,,,,,,,Photek,4500,,,,,,"19,20"
-13,,,,,,,,,,,,,Photek,4200,,,,,,21
-14,,,,,,,"""HPK 3.1 4x4 pre-rad, UCSC""",160,"""HPK 3.1 4x4 8E14, UCSC""",500,"""HPK 3.1 4x4 1.5E15, UCSC""",500,Photek,4200,,,,,,22
-15,,,,,,,"""HPK 3.1 4x4 pre-rad, UCSC""",175,"""HPK 3.1 4x4 8E14, UCSC""",550,"""HPK 3.1 4x4 1.5E15, UCSC""",575,Photek,4200,,,,,,23
-16,,,,,,,"""HPK 3.1 4x4 pre-rad, UCSC""",185,"""HPK 3.1 4x4 8E14, UCSC""",575,"""HPK 3.1 4x4 1.5E15, UCSC""",600,Photek,4200,,,,,,24
-17,,,,,,,"""HPK 3.1 4x4 pre-rad, UCSC""",195,"""HPK 3.1 4x4 8E14, UCSC""",600,"""HPK 3.1 4x4 1.5E15, UCSC""",615,Photek,4200,,,,,,25
-18,,,,,,,"""HPK 3.1 4x4 pre-rad, UCSC""",205,"""HPK 3.1 4x4 8E14, UCSC""",615,"""HPK 3.1 4x4 1.5E15, UCSC""",630,Photek,4200,,,,,,26
-19,,,,,,,"""HPK 3.1 4x4 pre-rad, UCSC""",210,"""HPK 3.1 4x4 8E14, UCSC""",630,"""HPK 3.1 4x4 1.5E15, UCSC""",645,Photek,4200,,,,,,27
-20,,,,,,,"""HPK 3.1 4x4 pre-rad, UCSC""",200,"""HPK 3.1 4x4 8E14, UCSC""",640,"""HPK 3.1 4x4 1.5E15, UCSC""",660,Photek,4200,,,,,,28
-21,,,,,,,,,,,,,,,,,,,,
-22,,,,,"""HPK 3.1 2x2 95 microns, FNAL""",185,,,,,,,Photek,4200,,,,,,29
-23,,,,,,,,,"""HPK 3.1 2x2 50 microns, FNAL""",185,,,Photek,4200,,,,,,30
-24,,,,,,,,,,,"""HPK 3.1 2x2 30 microns, FNAL""",185,Photek,4200,,,,,,31
-25,,,,,,,"""HPK 3.1 2x2 70 microns, FNAL""",185,,,,,Photek,4200,,,,,,32
-26,,,,,"""HPK 3.1 2x2 95 microns, FNAL""",185,"""HPK 3.1 2x2 70 microns, FNAL""",185,"""HPK 3.1 2x2 50 microns, FNAL""",185,"""HPK 3.1 2x2 30 microns, FNAL""",185,Photek,4200,,,,,,34
-27,,,,,"""HPK 3.1 4x4 8E14, FNAL""",400,,,"""HPK 3.1 4x4 4E14, UCSC""",500,"""HPK 3.1 1.3 mm 5E14 neq proton, UCSC""",450,Photek,4200,,,,,,38
-28,,,,,"""HPK 3.1 4x4 8E14, FNAL""",550,,,"""HPK 3.1 4x4 4E14, UCSC""",500,"""HPK 3.1 1.3 mm 5E14 neq proton, UCSC""",450,Photek,4200,,,,,,39
-29,,,,,"""HPK 3.1 4x4 8E14, FNAL""",600,,,"""HPK 3.1 4x4 4E14, UCSC""",525,"""HPK 3.1 1.3 mm 5E14 neq proton, UCSC""",500,Photek,4200,,,,,,40
-30,,,,,"""HPK 3.1 4x4 8E14, FNAL""",550,,,"""HPK 3.1 4x4 4E14, UCSC""",525,"""HPK 3.1 1.3 mm 5E14 neq proton, UCSC""",500,Photek,4200,,,,,,41
-31,,,,,"""HPK 3.1 4x4 8E14, FNAL""",625,,,"""HPK 3.1 4x4 4E14, UCSC""",535,"""HPK 3.1 1.3 mm 5E14 neq proton, UCSC""",475,Photek,4200,,,,,,42
-32,,,,,,,,,,,,,,,,,,,,
-33,,,,,"""HPK 3.1 4x4 8E14, FNAL""",625,,,"""HPK 3.1 4x4 4E14, UCSC""",545,"""HPK 3.1 1.3 mm 5E14 neq proton, UCSC""",525,Photek,4200,,,,,,43
-34,,,,,"""HPK 3.1 4x4 8E14, FNAL""",625,,,"""HPK 3.1 4x4 4E14, UCSC""",525,"""HPK 3.1 1.3 mm 5E14 neq proton, UCSC""",500,Photek,4200,,,,,,44
-35,,,,,"""HPK 3.1 4x4 8E14, FNAL""",625,,,"""HPK 3.1 4x4 4E14, UCSC""",500,"""HPK 3.1 1.3 mm 5E14 neq proton, UCSC""",540,Photek,4200,,,,,,45
-36,,,,,"""HPK 3.1 4x4 8E14, FNAL""",625,,,"""HPK 3.1 4x4 4E14, UCSC""",525,"""HPK 3.1 1.3 mm 5E14 neq proton, UCSC""",500,Photek,4200,,,,,,46
-37,,,,,"""HPK 3.1 4x4 8E14, FNAL""",625,,,"""HPK 3.1 4x4 4E14, UCSC""",475,"""HPK 3.1 1.3 mm 5E14 neq proton, UCSC""",550,Photek,4200,,,,,,47
-38,,,,,"""HPK 3.1 4x4 8E14, FNAL""",625,,,"""HPK 3.1 4x4 4E14, UCSC""",450,"""HPK 3.1 1.3 mm 5E14 neq proton, UCSC""",450,Photek,4200,,,,,,48
-39,,,,,"""HPK 3.1 4x4 8E14, FNAL""",625,,,,,,,Photek,4200,,,,,,"49,50,51,52,53,54,55,62,63,64"
-40,,,,,"""HPK 3.1 4x4 8E14, FNAL""",650,,,,,,,Photek,4200,,,,,,56
-41,,,,,,,"""HPK 3.1 4x4 1.5E15, FNAL""",500,,,,,Photek,4200,,,first 1.5E15 run,,,"57,58"
-42,,,,,,,"""HPK 3.1 4x4 1.5E15, FNAL""",650,,,,,Photek,4200,,,,,,"59,60,61"
-43,,,,,,,,,"""HPK 3.1 4x4 4E14, UCSC""",400,"""HPK 3.1 1.3 mm 5E14 neq proton, UCSC""",450,Photek,4200,,,,,,65
-44,,,,,,,,,"""HPK 3.1 4x4 4E14, UCSC""",350,"""HPK 3.1 1.3 mm 5E14 neq proton, UCSC""",400,Photek,4200,,,,,,66
-45,,,,,,,,,"""HPK 3.1 2x2 1.5E15, 4-ch UCSC""",600,,,Photek,4200,,,,,,69
-46,,,,,,,,,"""HPK 3.1 2x2 1.5E15, 4-ch UCSC""",615,,,Photek,4200,,,,,,70
-47,,,,,,,,,"""HPK 3.1 2x2 1.5E15, 4-ch UCSC""",630,,,Photek,4200,,,,,,71
-48,,,FBK 2x8 1,200,,,,,,,,,Photek,4200,,,,,,72
-49,,,FBK 2x8 1,240,,,,,,,,,Photek,4200,,,,,,"73,74,75,76,77,78,79"
-50,,,,,"""HPK 3.1 4x4 prerad #2, FNAL""",195,,,,,,,Photek,4300,,,,,,"80,81,82,83,84,85,86"
-51,,,,,"""HPK 3.1 4x4 prerad #2, FNAL""",205,,,,,,,Photek,4300,,,,,,87
-52,,,,,"""HPK 3.1 4x4 prerad #2, FNAL""",175,,,,,,,Photek,4300,,,,,,88
-53,,,,,"""HPK 3.1 4x4 prerad #2, FNAL""",185,,,,,,,Photek,4300,,,,,,89
-54,,,,,,,"""HPK 3.1 4x4 4E14, FNAL""",450,,,,,Photek,4300,,,,,,"90,92,93,94,95,96,97"
-55,,,,,,,"""HPK 3.1 4x4 4E14, FNAL""",400,,,,,Photek,,,4300,,,,91
-56,,,,,,,"""HPK 3.1 4x4 4E14, FNAL""",500,,,,,Photek,4500,,,,,,"98,99,100,101,102,103"
+﻿Bias,Sensor HV0,HV0,Configurations,Sensor HV1,HV1,Sensor HV2,HV2,Sensor HV3,HV3,Sensor HV4,HV4,Sensor HV5,HV5,Sensor HV6,HV6,Sensor HV7,HV7,Notes,Attachments,Run Table
+57,Photek Sidet,5000,125,,200,,,,,,,,,,,,,,,
+58,,,"126,127",CMS 50x500 P2 Board 14,210,ATLAS 50x500 MW 2 Board 16,210,,,,,Photek B,3500,Photek Sidet,4800,,,,,
+59,,,128,CMS 50x500 P2 Board 14,0,ATLAS 50x500 MW 2 Board 16,0,,,,,,,,,,,,,
+60,,,"129,130",CMS 50x500 P2 Board 14,210,ATLAS 50x500 MW 2 Board 16,210,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",210,,,,,Photek Sidet,4800,,,,,
+61,,,131,CMS 50x500 P2 Board 14,220,ATLAS 50x500 MW 2 Board 16,220,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",220,,,,,Photek Sidet,4800,,,,,
+62,,,132,CMS 50x500 P2 Board 14,210,ATLAS 50x500 MW 2 Board 16,230,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",225,,,,,Photek Sidet,4800,,,,,
+63,,,133,CMS 50x500 P2 Board 14,200,ATLAS 50x500 MW 2 Board 16,235,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",200,,,,,Photek Sidet,4800,,,,,
+65,,,134,CMS 50x500 P2 Board 14,190,ATLAS 50x500 MW 2 Board 16,200,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",190,,,,,Photek Sidet,4800,,,,,
+66,,,135,CMS 50x500 P2 Board 14,180,ATLAS 50x500 MW 2 Board 16,190,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",180,,,,,Photek Sidet,4800,,,,,
+67,,,136,CMS 50x500 P2 Board 14,170,ATLAS 50x500 MW 2 Board 16,180,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",170,,,,,,4800,,,,,
+68,,,"137,138",CMS 50x500 P2 Board 14,160,ATLAS 50x500 MW 2 Board 16,170,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",160,,,,,Photek Sidet,4800,,,,,
+69,,,139,CMS 50x500 P2 Board 14,150,ATLAS 50x500 MW 2 Board 16,160,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",160,,,,,Photek Sidet,4800,,,,,
+70,,,140,CMS 50x500 P2 Board 14,155,ATLAS 50x500 MW 2 Board 16,150,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",170,,,,,Photek Sidet,4800,,,,,
+71,,,141,CMS 50x500 P2 Board 14,165,ATLAS 50x500 MW 2 Board 16,165,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",180,,,,,Photek Sidet,4800,,,,,
+72,,,142,CMS 50x500 P2 Board 14,185,ATLAS 50x500 MW 2 Board 16,185,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",190,,,,,Photek Sidet,4800,,,,,
+73,,,143,CMS 50x500 P2 Board 14,195,ATLAS 50x500 MW 2 Board 16,195,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",200,,,,,Photek Sidet,4800,,,,,
+74,,,144,CMS 50x500 P2 Board 14,205,ATLAS 50x500 MW 2 Board 16,205,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",210,,,,,Photek Sidet,4800,,,,,
+75,,,145,CMS 50x500 P2 Board 14,215,ATLAS 50x500 MW 2 Board 16,215,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",220,,,,,Photek Sidet,4800,,,,,
+76,,,146,CMS 50x500 P2 Board 14,175,ATLAS 50x500 MW 2 Board 16,225,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",225,,,,,Photek Sidet,4800,,,,,
+77,,,"147,148",,,,,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",200,"""ETROC0 11,  ATLAS 50x500 MW W2 P5 1""",200,,,Photek Sidet,4800,,,,,
+78,,,"149,153",,,,,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",220,"""ETROC0 11,  ATLAS 50x500 MW W2 P5 1""",220,,,Photek Sidet,4800,,,,,
+79,,,"150,155",,,,,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",180,"""ETROC0 11,  ATLAS 50x500 MW W2 P5 1""",180,,,Photek Sidet,4800,,,,,
+80,,,"151,156",,,,,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",160,"""ETROC0 11,  ATLAS 50x500 MW W2 P5 1""",160,,,Photek Sidet,4800,,,,,
+81,,,"152,154",,,,,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",200,"""ETROC0 11,  ATLAS 50x500 MW W2 P5 1""",200,,,Photek Sidet,4800,,,,,
+82,,,158,,,,,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",210,"""ETROC0 11,  ATLAS 50x500 MW W2 P5 1""",210,,,Photek Sidet,4800,,,,,
+83,,,159,,,,,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",190,"""ETROC0 11,  ATLAS 50x500 MW W2 P5 1""",190,,,Photek Sidet,4800,,,,,
+84,,,"160,161,162,163",,,,,,,FBK UFSD2 2x8 #1 8e14 Board 305,375,,,Photek Sidet,4800,,,,,
+85,,,"164,165,166,167,168,169,170,183,194,195,196,197,198",,,,,,,FBK UFSD2 2x8 #1 8e14 Board 305,350,,,Photek Sidet,4800,,,,,
+86,,,"171,172,173,174,175,176",,,,,,,,,FBK UFSD2 2x8 #2 4e14 Board 314,350,Photek Sidet,4800,,,,,
+87,,,"177,178,179,180,182,181",,,,,,,,,FBK UFSD2 2x8 #2 4e14 Board 314,385,Photek Sidet,4800,,,,,
+89,,,184,CMS 50x500 P2 Board 14,160,,,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",160,,,,,Photek Sidet,4800,,,,,
+90,,,185,CMS 50x500 P2 Board 14,170,,,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",170,,,,,Photek Sidet,4800,,,,,
+91,,,186,CMS 50x500 P2 Board 14,180,,,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",180,,,,,Photek Sidet,4800,,,,,
+92,,,187,CMS 50x500 P2 Board 14,150,,,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",140,,,,,Photek Sidet,4800,,,,,
+93,,,188,CMS 50x500 P2 Board 14,140,,,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",120,,,,,Photek Sidet,4800,,,,,
+94,,,189,CMS 50x500 P2 Board 14,130,,,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",120,,,,,Photek Sidet,4800,,,,,
+95,,,190,CMS 50x500 P2 Board 14,120,,,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",140,,,,,Photek Sidet,4800,,,,,
+96,,,191,CMS 50x500 P2 Board 14,110,,,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",160,,,,,Photek Sidet,4800,,,,,
+97,,,192,CMS 50x500 P2 Board 14,100,,,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",170,,,,,Photek Sidet,4800,,,,,
+98,,,193,CMS 50x500 P2 Board 14,175,,,"""ETROC0 9, ATLAS 90x500 MW W2 P5""",180,,,,,Photek Sidet,4800,,,,,
+99,,,"201,200,199",,,Photek A,3700,HPK 50D,325,,,TI FBK W3,280,,,,,,,
+100,,,"202,203,204,205,206,207,208",,,Photek A,3700,HPK 50D,340,,,TI FBK W3,315,,,,,,,
+101,,,"209,210",,,Photek A,3700,HPK 50D,340,,,BNL AC LGAD,215,,,,,,,
+102,,,"211,212,213,214",,,Photek A,3700,HPK 50D,340,,,BNL AC LGAD,210,,,,,,,
+103,,,215,Photek B,3700,Photek A,3700,,,,,,,Photek Sidet,4800,,,,,
+104,,,216,Photek B,4000,Photek A,4000,,,,,,,Photek Sidet,4900,,,,,
+105,,,217,Photek B,4200,Photek A,4200,,,,,,,Photek Sidet,4500,,,,,
+106,,,218,Photek B,3500,Photek A,3500,,,,,,,Photek Sidet,4600,,,,,
+107,,,219,Photek B,3300,Photek A,3300,,,,,,,Photek Sidet,4400,,,,,
+108,,,"220,221,222,223,224,225,226,227",,,Photek A,3700,,,,,FBK AC LGAD W3,430,,,,,,,
