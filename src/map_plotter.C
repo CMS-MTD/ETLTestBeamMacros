@@ -20,6 +20,9 @@ void map_plotter::makeMaps(){
 	// deltat_nometal = new TH1F("deltat_nometal","",25,500,550);
 	
 
+	h_amp_example = new TH1F("h_amp_example","",35,0,350);
+	h_dt_example = new TH1F("h_dt_example","",30,500,1100);
+
 	channel_map = new TH2F("channel_map","channel map",nbinsX,minX,maxX,nbinsY,minY,maxY);
 	for(uint ib = 0; ib < npad+1; ib++){
 		if (ib>0) outRootFile->mkdir(Form("pad%i",ib));
@@ -199,7 +202,9 @@ void map_plotter::makeMaps(){
 			v_h_eff[pad_index]->Fill(x_adjust,y_adjust,nhits);
 			v_h_amp[pad_index]->Fill(x_adjust,y_adjust,amp[channel]);
 			v_h_run[pad_index]->Fill(x_adjust,y_adjust,run);
-			
+			if(pad_index==1){
+				h_amp_example->Fill(amp[channel]);
+			}
 			//Additional selection for timing measurement
 			if(ptkindex>=0){
 				
@@ -214,6 +219,10 @@ void map_plotter::makeMaps(){
 
 					v_h_time[pad_index]->Fill(x_adjust,y_adjust,delta_t);
 					v_h_eff_timing[pad_index]->Fill(x_adjust,y_adjust,1);
+
+					if(pad_index==1){
+						h_dt_example->Fill(delta_t);
+					}
 
 				}
 				else{//There is a hit based on amplitude, and a photek hit, but LGAD signal not adequate for timing
@@ -241,8 +250,10 @@ void map_plotter::makeMaps(){
 	t->Reset();
 	cout<<"Processed "<<nentries<<" events, "<<ngoodevents<<" good events."<<endl;
 }//end of all run ranges
-
-
+	
+		h_amp_example->SetBinContent(h_amp_example->GetNbinsX(),h_amp_example->GetBinContent(h_amp_example->GetNbinsX()) +h_amp_example->GetBinContent(h_amp_example->GetNbinsX()+1));
+		h_amp_example->Write();
+		h_dt_example->Write();
 		
 		//Construct maps from 3D hists
 		for(uint ie = 1; ie < v_h_eff.size(); ie++){
@@ -338,6 +349,9 @@ void map_plotter::makeMaps(){
 		FillSummary1DCoarse(v_y_sigmat,v_y_eff,channel_map,false);
 		FillSummary1DCoarse(v_y_deltat,v_y_eff,channel_map,false);
 
+
+		PrintExampleHistogram(h_amp_example,"amp_example");
+		PrintExampleHistogram(h_dt_example,"dt_example");
 
 		PrintSummaryMap(v_map_eff[0],"map_efficiency",zMinEff,zMaxEff);
 		PrintSummaryMap(v_map_amp[0],"map_mpv",zMinGain,zMaxGain);
@@ -439,6 +453,57 @@ void map_plotter::makeMaps(){
 
 	outRootFile->Close();
 }
+
+void map_plotter::PrintExampleHistogram(TH1F * h,TString name){
+
+	TCanvas c1;
+	c1.SetLeftMargin(0.12);
+	c1.SetRightMargin(0.08);
+	c1.SetBottomMargin(0.13);
+	// h->SetMarkerStyle(20);
+	// h->SetMarkerSize(0.6);
+	// h->SetMarkerColor(kBlue+2);
+	// if(min>=0) h2->SetMinimum(min);
+	// if(max>=0) h2->SetMaximum(max);
+	// h->SetTitle("");
+	h->SetLineWidth(2);
+	h->SetStats(0);
+	h->GetXaxis()->SetTitleSize(0.05);
+	h->GetYaxis()->SetTitleSize(0.05);
+	h->GetYaxis()->SetTitleOffset(1.1);
+	h->GetXaxis()->SetTitleOffset(1.1);
+	h->GetXaxis()->SetLabelSize(0.045);
+	h->GetYaxis()->SetLabelSize(0.045);
+
+	h->Draw();
+	TLatex * tla = new TLatex();
+    tla->SetTextSize(0.04);
+	tla->DrawLatexNDC(0.62,0.92,"HPK type 3.1, 195V, -20 C");
+	tla->DrawLatexNDC(0.1,0.92,"FNAL 120 GeV proton beam");
+	if(!name.Contains("dt")){
+		pair<float,float> mpv_and_err = GetMPV(h,minAmp,maxAmp,hitThres[1]);
+		h->SetTitle(";Amplitude [mV];Events");
+		tla->DrawLatexNDC(0.5,0.63,Form("MPV amplitude: %0.1f #pm %0.1f mV",mpv_and_err.first,mpv_and_err.second));
+
+
+	}
+	else{
+		pair<float,float> sig_and_err = GetSigmaT(h,minTime,maxTime);
+		h->SetTitle(";#DeltaT(LGAD - MCP) [ps];Events");
+		tla->DrawLatexNDC(0.5,0.63,Form("Time resolution: %0.1f #pm %0.1f ps",sig_and_err.first,sig_and_err.second));
+
+	}
+	// DrawCMS();
+
+	
+
+	// DrawProton();
+	// DrawTemp();
+	c1.Print(Form("%s/%s_%s.pdf",outDir.Data(),name.Data(),tag.Data()));
+	c1.Print(Form("%s/%s_%s.root",outDir.Data(),name.Data(),tag.Data()));
+
+}
+
 void map_plotter::PrintSummaryMap(TH2F * h2,TString name, float min, float max){
 
 

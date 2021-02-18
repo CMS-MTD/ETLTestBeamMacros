@@ -59,7 +59,7 @@ public:
 	void FillBox(TH3F * h3, TH1D * h1, int ibox);
 	void CleanMap(TH2F * map, float xmin, float xmax, float ymin, float ymax, bool scale);
 	float GetEff(TH3F * h3, int x_lo, int x_hi, int y_lo, int y_hi, int den=0);
-
+	void PrintExampleHistogram(TH1F * h,TString name);
 	void PrintSummaryMap(TH2F * h2,TString name,float min, float max);
 	void PrintSummary1D(TH1F * h,TString name);
 	void PrintSummaryGraph(TGraphAsymmErrors * g,TString name);
@@ -151,6 +151,9 @@ public:
 	vector<int> *pads = new vector<int>();
 	vector<string> *sensors = new vector<string>();
 
+	TH1F * h_amp_example;
+	TH1F * h_dt_example;
+
 	vector<TH3F*> v_h_eff;
 	vector<TH3F*> v_h_eff_timing;
 	vector<TH3F*> v_h_amp;
@@ -166,15 +169,13 @@ public:
 	vector<TH2F*> v_map_deltat;
 	TH2F* map_deltat_normalized;
 	TH2F* map_deltat_normalized_aligned;
-	// TH1F* deltat_metal;
-	// TH1F* deltat_nometal;
 
 	vector<TH2F*> v_map_sigmat;
 
 	TH2F * cosmetic_map;
 
 	vector<vector<TH1F*> > v_x_eff;
-    vector<TGraphAsymmErrors*> v_x_eff_graph;
+	vector<TGraphAsymmErrors*> v_x_eff_graph;
 	vector<vector<TH1F*> > v_x_nhits;
 	vector<vector<TH1F*> > v_x_amp;
 	vector<vector<TH1F*> > v_x_deltat;
