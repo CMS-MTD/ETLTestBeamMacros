@@ -1,0 +1,11 @@
+From airtable, download CSV files for CAEN, Scope, and global Configurations. Replace the files in add_branches/CondorData. The default format should be OK without any tweaks.
+
+Then update various paths for condor directory and the test beam data in add_branches.py, add_branches.sh, and submit_condor.py
+
+You can test out the functions getConfs, getChannelMap and getHVMap in add_branches.py to make sure they work with the latest format. If there are new columns in the AirTable, then you might have to tweak these.
+
+Once you are satisfied, try
+cd condor
+./submit_condor.py
+
+It will populate a subdirectory in eos within the original location called "confInfo". 
