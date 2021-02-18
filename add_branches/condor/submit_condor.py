@@ -4,12 +4,17 @@ import csv
 from ROOT import *
 from subprocess import Popen, PIPE
 
-confStart = 93
-confEnd = 96
+confStart = 255
+confEnd = 257
 checkOutputExisting = True
-
+recoVersion = "v5"
 globalConfFile="../CondorData/Configurations-Grid view.csv"
-scopeRecoDir = 'root://cmseos.fnal.gov//store/group/cmstestbeam/2019_04_April_CMSTiming/KeySightScope/RecoData/TimingDAQRECO/RecoWithTracks/v1/'
+scopeRecoDir = 'root://cmseos.fnal.gov//store/group/cmstestbeam/2021_CMSTiming_ETL/KeySightScope/RecoData/TimingDAQRECO/RecoWithTracks/%s/' %recoVersion
+outDir = '/store/group/cmstestbeam/2021_CMSTiming_ETL/KeySightScope/RecoData/TimingDAQRECO/RecoWithTracks/%s/confInfo/' %recoVersion
+eosCodeLocation = "/store/group/cmstestbeam/2021_CMSTiming_ETL/condor"
+
+
+#### No commas allowed in sensor names!
 
 def getRuns():
     runlist=[]
@@ -19,16 +24,18 @@ def getRuns():
             vals = line#.strip().split(',')
             nvals = len(vals)
            # print "conf %s, columns %i" %(vals[0],nvals)
-           # print vals
-            #print nvals
+            # print vals
+            # print nvals
             if int(vals[0]) >=confStart and int(vals[0])<=confEnd:               
-                if vals[8] != '' and vals[2]!='': ###there are more than zero runs in this conf, and scope is included. 
-                    runListThisConf = [int(x) for x in vals[8].split(",")]
+                if vals[10] != '' and vals[2]!='': ###there are more than zero runs in this conf, and scope is included. 
+                    runListThisConf = [int(x) for x in vals[10].split(",")]
                 #print runListThisConf
                     for x in runListThisConf:
                         runlist.append(x)
     csvfile.close()
     #print sensors, pads
+    #runlist = [27859]
+    print runlist
     return runlist
 
 def submitJob(runNumber):
@@ -51,11 +58,13 @@ def submitJob(runNumber):
     os.system(cmd)
 
 def updateCodeinEOS():
-    cmd = "eos root://cmseos.fnal.gov rm -r /store/group/cmstestbeam/2019_04_April_CMSTiming/condor/add_branches/"
+    cmd = "eos root://cmseos.fnal.gov rm -r %s/add_branches/" % eosCodeLocation
     os.system(cmd)
-    cmd = "eos root://cmseos.fnal.gov mkdir /store/group/cmstestbeam/2019_04_April_CMSTiming/condor/add_branches/"
+    cmd = "eos root://cmseos.fnal.gov mkdir %s/add_branches/" % eosCodeLocation
     os.system(cmd)
-    cmd = "xrdcp -r ../CondorData root://cmseos.fnal.gov//store/group/cmstestbeam/2019_04_April_CMSTiming/condor/add_branches/"
+    cmd = "xrdcp -r ../CondorData root://cmseos.fnal.gov/%s/add_branches/" % eosCodeLocation
+    os.system(cmd)
+    cmd = "eos root://cmseos.fnal.gov mkdir %s" % outDir
     os.system(cmd)
 
 
@@ -71,8 +80,10 @@ if __name__ == '__main__':
     print runlist
     print len(runlist)
     for run in runlist:
+        # print infile
         infile = scopeRecoDir.replace("root://cmseos.fnal.gov/","") + "run_scope%i_converted.root"%run
-        outfile = infile.replace("v1/","v1/confInfo/").replace("_converted.root","_info.root")
+        outfile = infile.replace("%s/"%recoVersion,"%s/confInfo/"%recoVersion).replace("_converted.root","_info.root")
+        print infile
         if fileExistsEOS(infile):
             if not checkOutputExisting or (checkOutputExisting and not fileExistsEOS(outfile)):
                submitJob(run)

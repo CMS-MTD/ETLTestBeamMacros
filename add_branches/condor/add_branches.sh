@@ -5,7 +5,7 @@ cd /cvmfs/cms.cern.ch/slc6_amd64_gcc530/cms/cmssw/CMSSW_9_0_2/src/
 eval `scramv1 runtime -sh`
 cd -
 
-xrdcp -r root://cmseos.fnal.gov//store/group/cmstestbeam/2019_04_April_CMSTiming/condor/add_branches .
+xrdcp -r root://cmseos.fnal.gov//store/group/cmstestbeam/2021_CMSTiming_ETL/condor/add_branches .
 ls
 python add_branches.py $1
 rm *.root

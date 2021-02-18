@@ -1,48 +1,13 @@
-﻿Configuration number,Sensor Ch0,Ch 0,Sensor Ch1,Ch 1,Sensor Ch2,Ch 2,Sensor Ch3,Ch 3,Configurations,Sensors,Note
-1,HPK 50D,1,FBK 2x8 1,6,Photek,1,"""HPK 3.1 4x4 pre-rad, UCSC""",1,"2,6,9",,
-4,"""HPK 3.1 4x4 pre-rad, UCSC""",1,"""HPK 3.1 4x4 8E14, UCSC""",1,"""HPK 3.1 4x4 1.5E15, UCSC""",1,Photek,1,"12,13,14,15,16,22,23,24,25,26,27,28",,
-5,,,,,Photek,2,Photek,1,"18,19,20",,
-6,"""HPK 3.1 2x2 95 microns, FNAL""",1,"""HPK 3.1 2x2 95 microns, FNAL""",2,"""HPK 3.1 2x2 95 microns, FNAL""",3,Photek,1,29,,
-7,"""HPK 3.1 2x2 50 microns, FNAL""",1,"""HPK 3.1 2x2 50 microns, FNAL""",2,"""HPK 3.1 2x2 50 microns, FNAL""",3,Photek,1,30,,
-8,"""HPK 3.1 2x2 30 microns, FNAL""",1,"""HPK 3.1 2x2 30 microns, FNAL""",2,"""HPK 3.1 2x2 30 microns, FNAL""",3,Photek,1,31,,
-9,"""HPK 3.1 2x2 70 microns, FNAL""",1,"""HPK 3.1 2x2 70 microns, FNAL""",2,"""HPK 3.1 2x2 70 microns, FNAL""",3,Photek,1,32,,
-10,"""HPK 3.1 2x2 95 microns, FNAL""",4,"""HPK 3.1 2x2 70 microns, FNAL""",4,"""HPK 3.1 2x2 50 microns, FNAL""",4,"""HPK 3.1 2x2 30 microns, FNAL""",4,34,,
-11,"""HPK 3.1 4x4 8E14, FNAL""",6,"""HPK 3.1 4x4 4E14, UCSC""",1,"""HPK 3.1 1.3 mm 5E14 neq proton, UCSC""",1,Photek,1,"38,39,40,41,42,43,45,46,47,48",,
-12,"""HPK 3.1 4x4 8E14, FNAL""",6,"""HPK 3.1 4x4 8E14, FNAL""",11,"""HPK 3.1 4x4 8E14, FNAL""",16,Photek,1,44,,
-13,"""HPK 3.1 4x4 8E14, FNAL""",3,"""HPK 3.1 4x4 8E14, FNAL""",11,"""HPK 3.1 4x4 8E14, FNAL""",14,Photek,4200,"49,56",,
-14,"""HPK 3.1 4x4 8E14, FNAL""",1,"""HPK 3.1 4x4 8E14, FNAL""",7,"""HPK 3.1 4x4 8E14, FNAL""",12,Photek,1,50,,
-15,"""HPK 3.1 4x4 8E14, FNAL""",2,"""HPK 3.1 4x4 8E14, FNAL""",8,"""HPK 3.1 4x4 8E14, FNAL""",13,Photek,1,51,,
-16,"""HPK 3.1 4x4 8E14, FNAL""",4,"""HPK 3.1 4x4 8E14, FNAL""",9,"""HPK 3.1 4x4 8E14, FNAL""",16,Photek,1,52,,ch2 was supposed to be 15
-17,"""HPK 3.1 4x4 8E14, FNAL""",5,"""HPK 3.1 4x4 8E14, FNAL""",10,"""HPK 3.1 4x4 8E14, FNAL""",16,Photek,1,53,,
-18,"""HPK 3.1 4x4 8E14, FNAL""",5,"""HPK 3.1 4x4 8E14, FNAL""",7,"""HPK 3.1 4x4 8E14, FNAL""",15,Photek,1,54,,
-19,"""HPK 3.1 4x4 8E14, FNAL""",2,"""HPK 3.1 4x4 8E14, FNAL""",8,"""HPK 3.1 4x4 8E14, FNAL""",12,Photek,1,55,,
-20,"""HPK 3.1 4x4 1.5E15, FNAL""",15,"""HPK 3.1 4x4 1.5E15, FNAL""",9,"""HPK 3.1 4x4 1.5E15, FNAL""",7,Photek,1,"57,58,59",,
-21,"""HPK 3.1 4x4 1.5E15, FNAL""",2,"""HPK 3.1 4x4 1.5E15, FNAL""",1,"""HPK 3.1 4x4 1.5E15, FNAL""",16,Photek,1,60,,
-22,"""HPK 3.1 4x4 1.5E15, FNAL""",15,"""HPK 3.1 4x4 1.5E15, FNAL""",13,"""HPK 3.1 4x4 1.5E15, FNAL""",12,Photek,1,61,,
-23,"""HPK 3.1 4x4 8E14, FNAL""",1,"""HPK 3.1 4x4 8E14, FNAL""",12,"""HPK 3.1 4x4 8E14, FNAL""",7,Photek,1,62,,
-24,"""HPK 3.1 4x4 8E14, FNAL""",9,"""HPK 3.1 4x4 8E14, FNAL""",13,"""HPK 3.1 4x4 8E14, FNAL""",6,Photek,1,,,
-25,"""HPK 3.1 4x4 8E14, FNAL""",1,"""HPK 3.1 4x4 8E14, FNAL""",10,"""HPK 3.1 4x4 8E14, FNAL""",15,Photek,1,63,,
-26,"""HPK 3.1 4x4 8E14, FNAL""",6,"""HPK 3.1 4x4 8E14, FNAL""",9,"""HPK 3.1 4x4 8E14, FNAL""",13,Photek,1,64,,
-27,,,"""HPK 3.1 4x4 4E14, UCSC""",1,"""HPK 3.1 1.3 mm 5E14 neq proton, UCSC""",1,Photek,1,"65,66",,
-28,"""HPK 3.1 2x2 1.5E15, 4-ch UCSC""",1,"""HPK 3.1 2x2 1.5E15, 4-ch UCSC""",2,"""HPK 3.1 2x2 1.5E15, 4-ch UCSC""",3,Photek,1,"69,70,71",,
-29,FBK 2x8 1,7,FBK 2x8 1,8,FBK 2x8 1,9,Photek,1,"72,73",,
-30,FBK 2x8 1,6,FBK 2x8 1,10,FBK 2x8 1,11,Photek,1,74,,
-31,FBK 2x8 1,4,FBK 2x8 1,5,FBK 2x8 1,12,Photek,1,75,,
-32,FBK 2x8 1,3,FBK 2x8 1,13,FBK 2x8 1,14,Photek,1,76,,
-33,FBK 2x8 1,2,FBK 2x8 1,15,FBK 2x8 1,16,Photek,1,77,,
-34,FBK 2x8 1,1,FBK 2x8 1,5,FBK 2x8 1,4,Photek,1,78,,
-35,FBK 2x8 1,2,FBK 2x8 1,13,FBK 2x8 1,12,Photek,1,79,,
-36,"""HPK 3.1 4x4 prerad #2, FNAL""",2,"""HPK 3.1 4x4 prerad #2, FNAL""",13,"""HPK 3.1 4x4 prerad #2, FNAL""",8,Photek,1,80,,
-37,"""HPK 3.1 4x4 prerad #2, FNAL""",2,"""HPK 3.1 4x4 prerad #2, FNAL""",1,"""HPK 3.1 4x4 prerad #2, FNAL""",16,Photek,1,81,,
-38,"""HPK 3.1 4x4 prerad #2, FNAL""",15,"""HPK 3.1 4x4 prerad #2, FNAL""",13,"""HPK 3.1 4x4 prerad #2, FNAL""",12,Photek,1,82,,
-39,"""HPK 3.1 4x4 prerad #2, FNAL""",10,"""HPK 3.1 4x4 prerad #2, FNAL""",9,"""HPK 3.1 4x4 prerad #2, FNAL""",8,Photek,1,83,,
-40,"""HPK 3.1 4x4 prerad #2, FNAL""",7,"""HPK 3.1 4x4 prerad #2, FNAL""",5,"""HPK 3.1 4x4 prerad #2, FNAL""",4,Photek,1,84,,
-41,"""HPK 3.1 4x4 prerad #2, FNAL""",3,"""HPK 3.1 4x4 prerad #2, FNAL""",14,"""HPK 3.1 4x4 prerad #2, FNAL""",11,Photek,1,"85,87,88,89",,
-42,"""HPK 3.1 4x4 prerad #2, FNAL""",6,"""HPK 3.1 4x4 prerad #2, FNAL""",9,"""HPK 3.1 4x4 prerad #2, FNAL""",16,Photek,1,86,,
-43,"""HPK 3.1 4x4 4E14, FNAL""",2,"""HPK 3.1 4x4 4E14, FNAL""",13,"""HPK 3.1 4x4 4E14, FNAL""",8,Photek,1,"90,91",,
-44,"""HPK 3.1 4x4 4E14, FNAL""",2,"""HPK 3.1 4x4 4E14, FNAL""",1,"""HPK 3.1 4x4 4E14, FNAL""",16,Photek,1,"92,98",,
-45,"""HPK 3.1 4x4 4E14, FNAL""",15,"""HPK 3.1 4x4 4E14, FNAL""",13,"""HPK 3.1 4x4 4E14, FNAL""",12,Photek,1,"93,99",,
-46,"""HPK 3.1 4x4 4E14, FNAL""",10,"""HPK 3.1 4x4 4E14, FNAL""",9,"""HPK 3.1 4x4 4E14, FNAL""",8,Photek,1,"94,100",,
-47,"""HPK 3.1 4x4 4E14, FNAL""",7,"""HPK 3.1 4x4 4E14, FNAL""",5,"""HPK 3.1 4x4 4E14, FNAL""",4,Photek,1,"95,101",,
-48,"""HPK 3.1 4x4 4E14, FNAL""",6,"""HPK 3.1 4x4 4E14, FNAL""",14,"""HPK 3.1 4x4 4E14, FNAL""",11,Photek,1,"96,102",,
-49,"""HPK 3.1 4x4 4E14, FNAL""",3,"""HPK 3.1 4x4 4E14, FNAL""",5,"""HPK 3.1 4x4 4E14, FNAL""",4,Photek,1,"97,103",,
+﻿Configuration number,Sensor Ch0,Ch 0,Sensor Ch1,Ch 1,Sensor Ch2,Ch 2,Sensor Ch3,Ch 3,Configurations,Sensors,Note,CH0 MUX,CH1 MUX,CH2 MUX,CH3 MUX
+114,HPK22_W33_SE3IP5_P55_L1p5e15,1,HPK23_W37_SE3IP5_P55_L1p5e15,1,HPK24_W43_SE3IP5_R7C3_L1p5e15_2,1,HPK24_W43_SE5IP5_P78_L1p5e15,1,"228,229,230",,,,,,
+116,HPK24_5x5_prerad,9,Photek,1,HPK24_5x5_prerad,12,HPK24_5x5_prerad,11,"231,238",,,k2,k11,k1,k10
+117,HPK22_W33_SE3IP5_P55_L1p5e15,1,Photek,1,HPK24_5x5_prerad,12,HPK24_5x5_prerad,11,"232,233,234",,,k6,k11,k1,k10
+118,HPK22_W33_SE3IP5_P55_L1p5e15,1,Photek,1,HPK24_5x5_prerad,12,HPK24_W43_SE5IP5_P78_L1p5e15,1,"235,236,237",,,k6,k11,k1,k12
+119,HPK22_W33_SE3IP5_P55_L1p5e15,1,Photek,1,HPK24_W43_SE3IP5_R7C3_L1p5e15_2,1,HPK24_5x5_prerad,11,"239,240,241",,,k6,k11,k6,k10
+120,HPK22_W33_SE3IP5_P55_L1p5e15,1,HPK23_W37_SE3IP5_P55_L1p5e15,1,HPK24_W43_SE3IP5_R7C3_L1p5e15_2,1,Photek,1,"242,243",,,k6,k12,k6,k11
+121,HPK22_W33_SE3IP5_P55_L1p5e15,1,HPK23_W37_SE3IP5_P55_L1p5e15,1,HPK24_5x5_prerad,13,Photek,1,"244,245,246",,,k6,k12,k2,k11
+122,HPK24_5x5_prerad,14,HPK23_W37_SE3IP5_P55_L1p5e15,1,HPK24_5x5_prerad,13,Photek,1,"247,248",,,k1,k12,k2,k12
+123,HPK24_5x5_prerad,9,HPK23_W37_SE3IP5_P55_L1p5e15,1,HPK24_5x5_prerad,12,Photek,1,"250,251,252,253",,,k2,k12,k1,k12
+124,HPK24_2x2_prerad,4,HPK24_2x2_prerad,5,HPK24_2x2_prerad,12,HPK24_2x2_prerad,13,"254,255",,,,,,
+125,HPK24_2x2_prerad,4,HPK24_2x2_prerad,5,HPK24_2x2_prerad,12,Photek,1,256,,,k6,k12,k6,k11
+126,HPK24_2x2_prerad,4,HPK24_2x2_prerad,5,Photek,1,HPK24_2x2_prerad,13,257,,,k6,k12,k5,k12
