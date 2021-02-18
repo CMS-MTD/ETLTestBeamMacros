@@ -54,7 +54,7 @@ public:
 
 	void ConvertMap(TH3F * h3, TH2F * h2, int type, int pad);
 	void Convert1D(TH3F * h3, vector<TH1F*> h1, int type, bool isX, int pad);
-	void ConvertTH1toTGraphAsymmErrors(vector<TH1F*> v_x_eff, vector<TH1F*> v_x_nhits,vector<TGraphAsymmErrors*> v_x_eff_graph);
+	void ConvertTH1toTGraphAsymmErrors(vector<TH1F*> v_x_eff, vector<TH1F*> v_x_nhits,vector<TGraphAsymmErrors*> v_x_eff_graph,TString name);
 
 	void FillBox(TH3F * h3, TH1D * h1, int ibox);
 	void CleanMap(TH2F * map, float xmin, float xmax, float ymin, float ymax, bool scale);
@@ -77,6 +77,8 @@ public:
 	vector<float> residRangeX;
 	vector<float> residMeanY;
 	vector<float> residRangeY;
+	int dut_index;
+	float maxTrackChi2;
 
 	float photekMin;
 	float photekMax;

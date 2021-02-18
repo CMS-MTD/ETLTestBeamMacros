@@ -159,12 +159,13 @@ void map_plotter::makeMaps(){
 			fflush(stdout);
 
 		//Skip events without exactly one good track
-			if(ntracks!=1 || npix < 1 || nback < 1 ) continue;
+			if(ntracks!=1 || npix < 1 || nback < 1 || chi2 > maxTrackChi2) continue;
 			// float xResid = abs(xResidBack - residMeanX.at(i_runrange));
 			// float yResid = abs(yResidBack - residMeanY.at(i_runrange));
 
 			// if(xResid>residRangeX.at(i_runrange) || yResid>residRangeY.at(i_runrange)) continue;
 
+ 				
 
 			pair<int,int> nhits_and_channel =nLGADHitsAndChannel();
 			int nhits= nhits_and_channel.first;
@@ -187,16 +188,17 @@ void map_plotter::makeMaps(){
 		//Fill hists
 
 		//Allow for rotation & offset of coordinates
-			pair<float,float> rotated = Rotate(x_dut[2],y_dut[2],angle->at(i_runrange));
+			pair<float,float> rotated = Rotate(x_dut[dut_index],y_dut[dut_index],angle->at(i_runrange));
 			float x_adjust = rotated.first + x_offset->at(i_runrange);
 			float y_adjust = rotated.second + y_offset->at(i_runrange);
 
 
-			if(nhits==1)
+			if(nhits>=1)
 			{	//Record hit for hit channel.
+				nhits=1;
 			int pad_index = pads->at(channel);//getPadIndex(channel);
 			//Efficiency for simple threshold.
-			v_h_eff[pad_index]->Fill(x_adjust,y_adjust,nhits);
+			v_h_eff[pad_index]->Fill(x_adjust,y_adjust,nhits); //should be nhits
 			v_h_amp[pad_index]->Fill(x_adjust,y_adjust,amp[channel]);
 			v_h_run[pad_index]->Fill(x_adjust,y_adjust,run);
 			
@@ -207,9 +209,9 @@ void map_plotter::makeMaps(){
 
 					// float delta_t = -LP2_20[channel]+LP2_40[ptkindex]; //fix
 					float delta_t = LP2_20[channel]-LP2_40[ptkindex]; //fix
-					delta_t += 16.1e-9;
+					// delta_t += 16.1e-9;
 					delta_t *=1e12;
-					delta_t -=7500;
+					// delta_t -=7500;
 					// delta_t -=510;
 
 					v_h_time[pad_index]->Fill(x_adjust,y_adjust,delta_t);
@@ -218,9 +220,11 @@ void map_plotter::makeMaps(){
 				}
 				else{//There is a hit based on amplitude, and a photek hit, but LGAD signal not adequate for timing
 						//Record as miss for all channels.
-					for(int iscope_chan=0; iscope_chan<nchan_lgad;iscope_chan++){
+					for(int iscope_chan=0; iscope_chan<nchan;iscope_chan++){
 						int pad_index = pads->at(iscope_chan);
-						v_h_eff_timing[pad_index]->Fill(x_adjust,y_adjust,0);
+						if(sensors->at(iscope_chan).find("Photek")==std::string::npos){ //not a photek channel)
+							v_h_eff_timing[pad_index]->Fill(x_adjust,y_adjust,0);
+						}
 					}
 				}
 				
@@ -228,11 +232,13 @@ void map_plotter::makeMaps(){
 		}
 		else if(nhits==0)
 		{ 	//If there is no hit, record it as a miss for all channels included this run.
-			for(int iscope_chan=0; iscope_chan<nchan_lgad;iscope_chan++)
+			for(int iscope_chan=0; iscope_chan<nchan;iscope_chan++)
 			{
 				int pad_index = pads->at(iscope_chan);
+				if(sensors->at(iscope_chan).find("Photek")==std::string::npos){ //not a photek channel)
 				v_h_eff[pad_index]->Fill(x_adjust,y_adjust,nhits);
 				if(ptkindex>=0) v_h_eff_timing[pad_index]->Fill(x_adjust,y_adjust,0); //Don't penalize for bad photek hits
+				}
 			}
 		}
 		
@@ -345,7 +351,11 @@ void map_plotter::makeMaps(){
 		PrintSummaryMap(v_map_deltat[0],"map_deltat",zMinDeltat,zMaxDeltat);
 		PrintSummaryMap(map_deltat_normalized,"map_deltat_norm",zMinDeltat,zMaxDeltat);
 		
-		ConvertTH1toTGraphAsymmErrors(v_x_eff[0],v_x_nhits[0],v_x_eff_graph);
+		ConvertTH1toTGraphAsymmErrors(v_x_eff[0],v_x_nhits[0],v_x_eff_graph,"all_chan");
+		ConvertTH1toTGraphAsymmErrors(v_x_eff[4],v_x_nhits[4],v_x_eff_graph,"chan4");
+		ConvertTH1toTGraphAsymmErrors(v_x_eff[5],v_x_nhits[5],v_x_eff_graph,"chan5");
+		ConvertTH1toTGraphAsymmErrors(v_x_eff[12],v_x_nhits[12],v_x_eff_graph,"chan12");
+		ConvertTH1toTGraphAsymmErrors(v_x_eff[13],v_x_nhits[13],v_x_eff_graph,"chan13");
 		for(int i=0;i<xSliceMin.size();i++){
 			PrintSummary1D(v_x_eff[0][i],Form("x_efficiency%i",i));
 			// cout<<"Printing graph"<<endl;
@@ -442,16 +452,18 @@ void map_plotter::makeMaps(){
 void map_plotter::PrintSummaryMap(TH2F * h2,TString name, float min, float max){
 
 
-	TCanvas c1("","",1100,500);
-	c1.SetLeftMargin(0.07);
-	c1.SetRightMargin(0.15);
+	TCanvas c1("","",800,700);
+	c1.SetLeftMargin(0.13);
+	c1.SetRightMargin(0.2);
 	c1.SetBottomMargin(0.13);
+	h2->GetYaxis()->SetTitleOffset(1);
+	h2->GetZaxis()->SetTitleOffset(1);
 	if(min>=0) h2->SetMinimum(min);
 	if(max>=0) h2->SetMaximum(max);
 	h2->Draw("colz");
 	// DrawCMS();
 	DrawProton();
-	DrawTemp();
+	// DrawTemp();
 	c1.Print(Form("%s/%s_%s.pdf",outDir.Data(),name.Data(),tag.Data()));
 	c1.Print(Form("%s/%s_%s.root",outDir.Data(),name.Data(),tag.Data()));
 
@@ -488,7 +500,7 @@ void map_plotter::PrintSummaryGraph(TGraphAsymmErrors * g,TString name){
 	hfiller->Draw();
 	// if(min>=0) h2->SetMinimum(min);
 	// if(max>=0) h2->SetMaximum(max);
-	g->SetTitle("");
+	// g->SetTitle("");
 	g->SetLineWidth(1);
 
 	g->SetMarkerStyle(20);
@@ -600,7 +612,7 @@ void map_plotter::FillSummaryMapCoarse(TH2F* h_target, vector<TH2F*> v_map, TH2F
 		float x = h_target->GetXaxis()->GetBinCenter(ix);
 		for(uint iy=0;iy<h_target->GetNbinsY();iy++){
 			//For hpk3p1 paper:
-			if(iy>=64) continue;
+			// if(iy>=64) continue;
 			float y = h_target->GetYaxis()->GetBinCenter(iy);
 			int bin_map = channel_map->FindBin(x,y);
 			if(channel_map->GetBinContent(bin_map) > 0){
@@ -760,7 +772,7 @@ void map_plotter::Convert1D(TH3F * h3, vector<TH1F *> h1, int type, bool isX, in
 	}
 }
 
-void map_plotter::ConvertTH1toTGraphAsymmErrors(vector<TH1F*> v_h, vector<TH1F*> v_nhits, vector<TGraphAsymmErrors*> v_g){
+void map_plotter::ConvertTH1toTGraphAsymmErrors(vector<TH1F*> v_h, vector<TH1F*> v_nhits, vector<TGraphAsymmErrors*> v_g, TString name){
 	
 	for(uint islice =0;islice < v_h.size(); islice++){
 
@@ -788,8 +800,11 @@ void map_plotter::ConvertTH1toTGraphAsymmErrors(vector<TH1F*> v_h, vector<TH1F*>
 		exh[i-1]=0.5*width;
 	}
 	TGraphAsymmErrors * g = new TGraphAsymmErrors(n,x,y,exl,exh,eyl,eyh);
+	g->SetName(Form("efficiency_slice%i_%s",islice,name.Data()));
+	TString title = Form("%0.1f < y < %0.1f;x [mm]; Efficiency;",ySliceMin[islice],ySliceMax[islice]);
+	g->SetTitle(title);
 	g->Write();
-	PrintSummaryGraph(g,Form("effgraph%i",islice));
+	PrintSummaryGraph(g,Form("effgraph_slice%i_%s",islice,name.Data()));
 
 
 	v_g.push_back(g);
@@ -860,7 +875,8 @@ pair<int,int> map_plotter::nLGADHitsAndChannel(){
 		if(sensors->at(j).find("Photek")==std::string::npos){ //not a photek channel
 			if(amp[j] > hitThres[pads->at(j)]){
 				nhits++;
-				ch=j;
+				if(nhits == 1) ch=j;
+				else if(nhits >=2 && amp[j] > amp[ch]) ch=j;
 			}
 		}
 	}
