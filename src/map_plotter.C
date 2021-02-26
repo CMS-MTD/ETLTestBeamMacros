@@ -159,7 +159,8 @@ void map_plotter::makeMaps(){
 			fflush(stdout);
 
 		//Skip events without exactly one good track
-			if(ntracks!=1 || npix < 1 || nback < 1 || chi2 > maxTrackChi2) continue;
+			// if(ntracks!=1 || npix < 1 || nback < 1 || chi2 > maxTrackChi2) continue;
+			if(ntracks!=1 || nplanes<10 || npix < 1 || chi2 > maxTrackChi2) continue;
 			// float xResid = abs(xResidBack - residMeanX.at(i_runrange));
 			// float yResid = abs(yResidBack - residMeanY.at(i_runrange));
 
@@ -222,7 +223,7 @@ void map_plotter::makeMaps(){
 						//Record as miss for all channels.
 					for(int iscope_chan=0; iscope_chan<nchan;iscope_chan++){
 						int pad_index = pads->at(iscope_chan);
-						if(sensors->at(iscope_chan).find("Photek")==std::string::npos){ //not a photek channel)
+						if(sensors->at(iscope_chan).find("Photek")==std::string::npos  && sensors->at(iscope_chan).find("HPK2")!=std::string::npos){ //not a photek channel)
 							v_h_eff_timing[pad_index]->Fill(x_adjust,y_adjust,0);
 						}
 					}
@@ -235,7 +236,7 @@ void map_plotter::makeMaps(){
 			for(int iscope_chan=0; iscope_chan<nchan;iscope_chan++)
 			{
 				int pad_index = pads->at(iscope_chan);
-				if(sensors->at(iscope_chan).find("Photek")==std::string::npos){ //not a photek channel)
+				if(sensors->at(iscope_chan).find("Photek")==std::string::npos  && sensors->at(iscope_chan).find("HPK2")!=std::string::npos){ //not a photek channel)
 				v_h_eff[pad_index]->Fill(x_adjust,y_adjust,nhits);
 				if(ptkindex>=0) v_h_eff_timing[pad_index]->Fill(x_adjust,y_adjust,0); //Don't penalize for bad photek hits
 				}
@@ -872,7 +873,7 @@ pair<int,int> map_plotter::nLGADHitsAndChannel(){
 	int ch=-1;
 	for(int j=0;j<nchan;j++){
 	//	if(j!=2) continue;//fix
-		if(sensors->at(j).find("Photek")==std::string::npos){ //not a photek channel
+		if(sensors->at(j).find("Photek")==std::string::npos && sensors->at(j).find("HPK2")!=std::string::npos){ //not a photek channel
 			if(amp[j] > hitThres[pads->at(j)]){
 				nhits++;
 				if(nhits == 1) ch=j;
@@ -910,6 +911,7 @@ void map_plotter::InitBranches(){
 	//Track info
 	t->SetBranchStatus("ntracks", 1); t->SetBranchAddress("ntracks", &ntracks);
 	t->SetBranchStatus("nback", 1); t->SetBranchAddress("nback", &nback);
+	t->SetBranchStatus("nplanes", 1); t->SetBranchAddress("nplanes", &nplanes);
 	t->SetBranchStatus("npix", 1); t->SetBranchAddress("npix", &npix);
 	t->SetBranchStatus("chi2", 1); t->SetBranchAddress("chi2", &chi2);
 	// t->SetBranchStatus("xResidBack", 1); t->SetBranchAddress("xResidBack", &xResidBack);

@@ -6,7 +6,7 @@ int main(int argc, char **argv)
 	map_plotter mp;
 	mp.tag = "HPK2_2x2_February2021"; //This defines names of all output files
 	mp.chainPath = "root://cmseos.fnal.gov//store/group/cmstestbeam/2021_CMSTiming_ETL/LecroyScope/RecoData/TimingDAQRECO/RecoWithTracks/v2/confInfo/";
-	mp.debug=false;
+	mp.debug=true;
 	//Define run range
 	// mp.run_start = new vector<int>{31220,31272};
 	// mp.run_end = new vector<int>{31250,31283};
@@ -23,14 +23,14 @@ int main(int argc, char **argv)
 	mp.y_offset= new vector<float>{0.0}; //mm
 	
 	mp.dut_index = 0; //center of telescope
-	mp.maxTrackChi2 = 30;
+	mp.maxTrackChi2 = 50;
 
 	//Define xy binning and ranges [mm]
 	mp.nbinsX=50;//30;
 	mp.nbinsY=50;//10;
 	mp.rebinFactor=1; //coarser binning for maps of gain, timing (finer for efficiency)
-	mp.minX=17; mp.maxX=20;
-	mp.minY=19.2; mp.maxY=22.2;
+	mp.minX=-5; mp.maxX=5;
+	mp.minY=10; mp.maxY=22.2;
 
 	//Define amplitude, time binning and range, and scope saturation.
 	mp.saturation =350.;
