@@ -6,7 +6,7 @@ int main(int argc, char **argv)
 	map_plotter mp;
 	mp.tag = "HPK2_2x2_February2021"; //This defines names of all output files
 	mp.chainPath = "root://cmseos.fnal.gov//store/group/cmstestbeam/2021_CMSTiming_ETL/LecroyScope/RecoData/TimingDAQRECO/RecoWithTracks/v2/confInfo/";
-	mp.debug=true;
+	mp.debug=false;
 	//Define run range
 	// mp.run_start = new vector<int>{31220,31272};
 	// mp.run_end = new vector<int>{31250,31283};
