@@ -10,12 +10,13 @@ condorMode=True
 globalConfFile='Configurations-Grid view.csv'
 keySightConfFile='ConfigurationKeySightScope-Grid view.csv'
 caenConfFile='ConfigurationCAENHV-Grid view.csv'
-recoVersion = "v5"
-scopeRecoDir = 'root://cmseos.fnal.gov//store/group/cmstestbeam/2021_CMSTiming_ETL/KeySightScope/RecoData/TimingDAQRECO/RecoWithTracks/%s/'%recoVersion
+recoVersion = "v2"
+scopeRecoDir = 'root://cmseos.fnal.gov//store/group/cmstestbeam/2021_CMSTiming_ETL/LecroyScope/RecoData/TimingDAQRECO/RecoWithTracks/%s/'%recoVersion
 outDir = scopeRecoDir+'confInfo/'
 
 ### increment this number if more columns are added to global configuration
-firstConfElementWithRunNumber = 10
+firstConfElementWithRunNumber = 11
+nEmptyEntriesAtend=3
 
 def getConfs(runNumber):
     globConf=-1
@@ -31,18 +32,19 @@ def getConfs(runNumber):
             if nvals < firstConfElementWithRunNumber+1 or vals[firstConfElementWithRunNumber]=="": continue ## no runs exist
             # print vals
             ##10 is the first entry with a run number.
-            for x in vals[firstConfElementWithRunNumber:nvals-2]: print x.replace('"','')
-            runListThisConf = [int(x.replace('"','')) for x in vals[firstConfElementWithRunNumber:nvals-2]]
+            for x in vals[firstConfElementWithRunNumber:nvals-nEmptyEntriesAtend]: print x.replace('"','')
+            runListThisConf = [int(x.replace('"','')) for x in vals[firstConfElementWithRunNumber:nvals-nEmptyEntriesAtend]]
             if runNumber in runListThisConf:
                 globConf=int(vals[0])
-                scopeConf = int(vals[1])
-                caenConf = int(vals[2])
+                scopeConf = int(vals[2]) ##lecroy is 2, keysight is 3
+                caenConf = int(vals[1])
                 break
     csvfile.close()
     print "Run %i: globConf %i, scopeConf %i, caenConf %i" % (runNumber,globConf,scopeConf,caenConf)
     return(globConf,scopeConf,caenConf)
 
 ### only works for 4 channels.
+nchan=8
 def getChannelMap(scopeConf):
     sensors =[]
     pads = []
@@ -55,8 +57,9 @@ def getChannelMap(scopeConf):
             #print vals
             if int(vals[0]) == scopeConf:
                # print "found it"
-                #print vals
-                sensors=[vals[1].replace('"',''),vals[3].replace('"',''),vals[5].replace('"',''),vals[7].replace('"','')]
+                print vals
+                if nchan==4:sensors=[vals[1].replace('"',''),vals[3].replace('"',''),vals[5].replace('"',''),vals[7].replace('"','')]
+                elif nchan==8:sensors=[vals[1].replace('"',''),vals[3].replace('"',''),vals[5].replace('"',''),vals[7].replace('"',''),vals[9].replace('"',''),vals[11].replace('"',''),vals[13].replace('"',''),vals[15].replace('"','')]
                 if (vals[2] != ''): pads.append(int(vals[2]))
                 else: pads.append(1)
                 if (vals[4] != ''): pads.append(int(vals[4]))
@@ -65,10 +68,18 @@ def getChannelMap(scopeConf):
                 else: pads.append(1)
                 if (vals[8] != ''): pads.append(int(vals[8]))
                 else: pads.append(1)
+                if nchan>4:
+                    if (vals[10] != ''): pads.append(int(vals[10]))
+                    else: pads.append(1)
+                    if (vals[12] != ''): pads.append(int(vals[12]))
+                    else: pads.append(1)
+                    if (vals[14] != ''): pads.append(int(vals[14]))
+                    else: pads.append(1)
+                    if (vals[16] != ''): pads.append(int(vals[16]))
 
                 break
     csvfile.close()
-    #print sensors, pads
+    print sensors, pads
     return(sensors,pads)
 
 def getHVMap(caenConf):
@@ -91,7 +102,7 @@ def getHVMap(caenConf):
                         else: HVs.append(-1)
                 break
     csvfile.close()
-    # print sensors, pads
+    print sensors, HVs
     return(sensors,HVs)
 
 

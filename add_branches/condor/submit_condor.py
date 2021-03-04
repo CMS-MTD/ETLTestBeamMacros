@@ -4,13 +4,13 @@ import csv
 from ROOT import *
 from subprocess import Popen, PIPE
 
-confStart = 255
-confEnd = 257
+confStart = 295
+confEnd = 310
 checkOutputExisting = True
-recoVersion = "v5"
+recoVersion = "v2"
 globalConfFile="../CondorData/Configurations-Grid view.csv"
-scopeRecoDir = 'root://cmseos.fnal.gov//store/group/cmstestbeam/2021_CMSTiming_ETL/KeySightScope/RecoData/TimingDAQRECO/RecoWithTracks/%s/' %recoVersion
-outDir = '/store/group/cmstestbeam/2021_CMSTiming_ETL/KeySightScope/RecoData/TimingDAQRECO/RecoWithTracks/%s/confInfo/' %recoVersion
+scopeRecoDir = 'root://cmseos.fnal.gov//store/group/cmstestbeam/2021_CMSTiming_ETL/LecroyScope/RecoData/TimingDAQRECO/RecoWithTracks/%s/' %recoVersion
+outDir = '/store/group/cmstestbeam/2021_CMSTiming_ETL/LecroyScope/RecoData/TimingDAQRECO/RecoWithTracks/%s/confInfo/' %recoVersion
 eosCodeLocation = "/store/group/cmstestbeam/2021_CMSTiming_ETL/condor"
 
 
@@ -26,9 +26,11 @@ def getRuns():
            # print "conf %s, columns %i" %(vals[0],nvals)
             # print vals
             # print nvals
+
             if int(vals[0]) >=confStart and int(vals[0])<=confEnd:               
-                if vals[10] != '' and vals[2]!='': ###there are more than zero runs in this conf, and scope is included. 
-                    runListThisConf = [int(x) for x in vals[10].split(",")]
+                print vals
+                if vals[11] != '' and vals[2]!='': ###there are more than zero runs in this conf, and scope is included. 
+                    runListThisConf = [int(x) for x in vals[11].split(",")]
                 #print runListThisConf
                     for x in runListThisConf:
                         runlist.append(x)

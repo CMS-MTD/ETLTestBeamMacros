@@ -1,13 +1,17 @@
-﻿Configuration number,Sensor Ch0,Ch 0,Sensor Ch1,Ch 1,Sensor Ch2,Ch 2,Sensor Ch3,Ch 3,Configurations,Sensors,Note,CH0 MUX,CH1 MUX,CH2 MUX,CH3 MUX
-114,HPK22_W33_SE3IP5_P55_L1p5e15,1,HPK23_W37_SE3IP5_P55_L1p5e15,1,HPK24_W43_SE3IP5_R7C3_L1p5e15_2,1,HPK24_W43_SE5IP5_P78_L1p5e15,1,"228,229,230",,,,,,
-116,HPK24_5x5_prerad,9,Photek,1,HPK24_5x5_prerad,12,HPK24_5x5_prerad,11,"231,238",,,k2,k11,k1,k10
-117,HPK22_W33_SE3IP5_P55_L1p5e15,1,Photek,1,HPK24_5x5_prerad,12,HPK24_5x5_prerad,11,"232,233,234",,,k6,k11,k1,k10
-118,HPK22_W33_SE3IP5_P55_L1p5e15,1,Photek,1,HPK24_5x5_prerad,12,HPK24_W43_SE5IP5_P78_L1p5e15,1,"235,236,237",,,k6,k11,k1,k12
-119,HPK22_W33_SE3IP5_P55_L1p5e15,1,Photek,1,HPK24_W43_SE3IP5_R7C3_L1p5e15_2,1,HPK24_5x5_prerad,11,"239,240,241",,,k6,k11,k6,k10
-120,HPK22_W33_SE3IP5_P55_L1p5e15,1,HPK23_W37_SE3IP5_P55_L1p5e15,1,HPK24_W43_SE3IP5_R7C3_L1p5e15_2,1,Photek,1,"242,243",,,k6,k12,k6,k11
-121,HPK22_W33_SE3IP5_P55_L1p5e15,1,HPK23_W37_SE3IP5_P55_L1p5e15,1,HPK24_5x5_prerad,13,Photek,1,"244,245,246",,,k6,k12,k2,k11
-122,HPK24_5x5_prerad,14,HPK23_W37_SE3IP5_P55_L1p5e15,1,HPK24_5x5_prerad,13,Photek,1,"247,248",,,k1,k12,k2,k12
-123,HPK24_5x5_prerad,9,HPK23_W37_SE3IP5_P55_L1p5e15,1,HPK24_5x5_prerad,12,Photek,1,"250,251,252,253",,,k2,k12,k1,k12
-124,HPK24_2x2_prerad,4,HPK24_2x2_prerad,5,HPK24_2x2_prerad,12,HPK24_2x2_prerad,13,"254,255",,,,,,
-125,HPK24_2x2_prerad,4,HPK24_2x2_prerad,5,HPK24_2x2_prerad,12,Photek,1,256,,,k6,k12,k6,k11
-126,HPK24_2x2_prerad,4,HPK24_2x2_prerad,5,Photek,1,HPK24_2x2_prerad,13,257,,,k6,k12,k5,k12
+﻿Configuration number,Sensor Ch0,Ch 0,Sensor Ch1,Ch 1,Sensor Ch2,Ch 2,Sensor Ch3,Ch 3,Sensor Ch4,Ch 4,Sensor Ch5,Ch 5,Sensor Ch6,Ch 6,Sensor Ch7,Ch 7,Configurations 2,Configurations,Sensors,Note,CH0 MUX,CH1 MUX,CH2 MUX,CH3 MUX
+5,BNL 2020 strips,1,,,,,,,,,,,,,,,"260,258",,,,,,,
+6,,,,,,,,,,,,,,,,,261,,,,,,,
+7,HPK2 DC-LGAD 2x2,4,HPK2 DC-LGAD 2x2,5,,,Photek,1,HPK2 DC-LGAD 2x2,13,BNL 2020 strips,8,BNL 2020 strips,4,Photek,1,"263,264,266,268",,,,,,,
+8,HPK2 DC-LGAD 2x2,4,HPK2 DC-LGAD 2x2,5,HPK2 DC-LGAD 2x2,12,Photek,1,HPK2 DC-LGAD 2x2,13,BNL 2020 strips,8,BNL 2020 strips,4,Photek,1,269,,,,,,,
+9,BNL 2020 strips,8,BNL 2020 strips,3,BNL 2020 strips,13,BNL 2020 strips,4,BNL 2020 strips,12,BNL 2020 strips,5,BNL 2020 strips,11,Photek,1,"270,271,272,273,274",,,,,,,
+10,HPK pads B2,6,HPK pads B2,4,HPK pads B2,5,HPK pads B2,12,HPK pads B2,13,HPK pads C2,4,HPK pads C2,6,Photek,1,"275,276,277,278,279,280,281",,,,,,,
+11,HPK pads C2,6,HPK pads C2,4,HPK pads C2,5,HPK pads C2,12,HPK pads C2,13,HPK pads B2,5,HPK pads B2,12,Photek,1,"282,283,284,285,286",,,,,,,
+12,BNL 2021 strip pitch variations,1,BNL 2021 strip pitch variations,4,BNL 2021 strip pitch variations,13,BNL 2021 strip pitch variations,5,BNL 2021 strip pitch variations,12,BNL 2021 strip pitch variations,6,BNL 2021 strip pitch variations,11,Photek,1,"287,288,289,290,291,292,293,294,295",,,,,,,
+13,BNL 2021 strip pitch variations,1,BNL 2021 strip pitch variations,6,BNL 2021 strip pitch variations,11,BNL 2021 strip pitch variations,7,BNL 2021 strip pitch variations,10,BNL 2021 strip pitch variations,8,BNL 2021 strip pitch variations,9,Photek,1,"296,297,298",,,,,,,
+14,BNL 2021 strip pitch variations,1,BNL 2021 strip pitch variations,16,BNL 2021 strip pitch variations,2,BNL 2021 strip pitch variations,15,BNL 2021 strip pitch variations,3,BNL 2021 strip pitch variations,14,BNL 2021 strip pitch variations,4,Photek,1,"299,300",,,,,,,
+15,Ron Chip 7 wide strips,2,Ron Chip 7 wide strips,3,Ron Chip 7 wide strips,14,Ron Chip 7 wide strips,4,Ron Chip 7 wide strips,13,Ron Chip 7 wide strips,5,Ron Chip 7 wide strips,12,Photek,1,"301,302",,,,,,,
+16,HPK strips C2,1,HPK strips C2,8,HPK strips C2,2,HPK strips C2,7,HPK strips C2,3,HPK strips C2,6,HPK strips C2,4,Photek,1,303,,,,,,,
+17,HPK strips C2,16,HPK strips C2,9,HPK strips C2,15,HPK strips C2,10,HPK strips C2,14,HPK strips C2,11,HPK strips C2,13,Photek,1,"304,309",,,,,,,
+18,BNL quad pixel,8,BNL quad pixel,3,BNL quad pixel,5,BNL quad pixel,2,BNL quad pixel,4,BNL quad pixel,14,BNL quad pixel,13,Photek,1,"305,306",,,,,,,
+19,BNL quad pixel,9,BNL quad pixel,1,BNL quad pixel,2,BNL quad pixel,4,BNL quad pixel,16,BNL quad pixel,14,BNL quad pixel,13,Photek,1,"307,308",,,,,,,
+20,BNL hexa pixel,1,BNL hexa pixel,2,BNL hexa pixel,3,BNL hexa pixel,4,BNL hexa pixel,15,BNL hexa pixel,13,BNL hexa pixel,14,Photek,1,310,,,,,,,
