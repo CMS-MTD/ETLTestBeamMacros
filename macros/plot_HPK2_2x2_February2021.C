@@ -4,33 +4,33 @@
 int main(int argc, char **argv)
 {
 	map_plotter mp;
-	mp.tag = "HPK2_2x2_December2021"; //This defines names of all output files
-	mp.chainPath = "root://cmseos.fnal.gov//store/group/cmstestbeam/2021_CMSTiming_ETL/KeySightScope/RecoData/TimingDAQRECO/RecoWithTracks/v5/confInfo/";
+	mp.tag = "HPK2_2x2_February2021"; //This defines names of all output files
+	mp.chainPath = "root://cmseos.fnal.gov//store/group/cmstestbeam/2021_CMSTiming_ETL/LecroyScope/RecoData/TimingDAQRECO/RecoWithTracks/v2/confInfo/";
 	mp.debug=false;
 	//Define run range
 	// mp.run_start = new vector<int>{31220,31272};
 	// mp.run_end = new vector<int>{31250,31283};
 	// mp.run_start = new vector<int>{31201,31251};
 	// mp.run_end = new vector<int>{31219,31271};
-	mp.run_start = new vector<int>{31201};
-	mp.run_end = new vector<int>{31283};
+	mp.run_start = new vector<int>{34119};
+	mp.run_end = new vector<int>{34145};
 
 	//Note: will try to load every run in this range, even if it doesn't exist (so, expect some harmless complaints.)
 
 	//Define rotation angle and manual adjustments of x and y
-	mp.angle = new vector<float>{0.345428}; //degrees
+	mp.angle = new vector<float>{0}; //degrees
 	mp.x_offset= new vector<float>{0.0}; //mm
 	mp.y_offset= new vector<float>{0.0}; //mm
 	
 	mp.dut_index = 0; //center of telescope
-	mp.maxTrackChi2 = 30;
+	mp.maxTrackChi2 = 50;
 
 	//Define xy binning and ranges [mm]
-	mp.nbinsX=300;//30;
-	mp.nbinsY=20;//10;
+	mp.nbinsX=50;//30;
+	mp.nbinsY=50;//10;
 	mp.rebinFactor=1; //coarser binning for maps of gain, timing (finer for efficiency)
-	mp.minX=17; mp.maxX=20;
-	mp.minY=19.2; mp.maxY=22.2;
+	mp.minX=-5; mp.maxX=5;
+	mp.minY=10; mp.maxY=22.2;
 
 	//Define amplitude, time binning and range, and scope saturation.
 	mp.saturation =350.;
@@ -47,8 +47,8 @@ int main(int argc, char **argv)
 	mp.photekMax=130;
 
 	// Define geometric boundaries for 1D "slices"
-	mp.xSliceMin={17.5,19};
-	mp.xSliceMax={18,19.5};
+	mp.xSliceMin={-0.8,0.5};
+	mp.xSliceMax={0.6,2};
 	mp.ySliceMin={19.65,20.1, 21,21.45};
 	mp.ySliceMax={19.95,20.4, 21.3,21.75};
 

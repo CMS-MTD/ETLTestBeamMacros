@@ -69,8 +69,8 @@ public:
 	bool debug;
 	vector<int> * run_start;
 	vector<int> * run_end;
-	static const int nchan=4;
-	static const int nchan_lgad=3;
+	static const int nchan=8;
+	static const int nchan_lgad=8;
 	static const int npad=16;//3;//16;
 	vector<float> hitThres;
 	vector<float> residMeanX;
@@ -143,10 +143,11 @@ public:
 	Float_t xResidBack;
 	Float_t yResidBack;
 	Int_t ntracks;
+	Int_t nplanes;
 	Int_t nback;
 	Int_t npix;
-	Float_t y_dut[13];
-	Float_t x_dut[13];
+	Float_t y_dut[4];
+	Float_t x_dut[4];
 
 	Int_t run;
 	Int_t gconf;
