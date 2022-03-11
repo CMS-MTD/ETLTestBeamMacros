@@ -145,7 +145,8 @@ void map_plotter::makeMaps(){
 	int ngoodtimingevents=0;
 	t = new TChain("pulse");
 	for(int i_runrange=0;i_runrange<run_start->size();i_runrange++){
-		for(int irun=run_start->at(i_runrange);irun<=run_end->at(i_runrange);irun++) t->Add(Form("%s/run_scope%i_info.root",chainPath.Data(),irun));
+		for(int irun=run_start->at(i_runrange);irun<=run_end->at(i_runrange);irun++) t->Add(Form("%s/run%i_info.root",chainPath.Data(),irun));
+		// for(int irun=run_start->at(i_runrange);irun<=run_end->at(i_runrange);irun++) t->Add(Form("%s/run_scope%i_info.root",chainPath.Data(),irun));
 		
 		InitBranches();
 		uint nentries= t->GetEntries();
@@ -160,7 +161,7 @@ void map_plotter::makeMaps(){
 
 		//Skip events without exactly one good track
 			// if(ntracks!=1 || npix < 1 || nback < 1 || chi2 > maxTrackChi2) continue;
-			if(ntracks!=1 || nplanes<10 || npix < 1 || chi2 > maxTrackChi2) continue;
+			if(ntracks!=1 || nplanes<8 || chi2 > maxTrackChi2) continue;
 			// float xResid = abs(xResidBack - residMeanX.at(i_runrange));
 			// float yResid = abs(yResidBack - residMeanY.at(i_runrange));
 
@@ -212,6 +213,7 @@ void map_plotter::makeMaps(){
 					float delta_t = LP2_20[channel]-LP2_40[ptkindex]; //fix
 					// delta_t += 16.1e-9;
 					delta_t *=1e12;
+					delta_t *=delta_t_sign;
 					// delta_t -=7500;
 					// delta_t -=510;
 
@@ -223,7 +225,7 @@ void map_plotter::makeMaps(){
 						//Record as miss for all channels.
 					for(int iscope_chan=0; iscope_chan<nchan;iscope_chan++){
 						int pad_index = pads->at(iscope_chan);
-						if(sensors->at(iscope_chan).find("Photek")==std::string::npos  && sensors->at(iscope_chan).find("HPK2")!=std::string::npos){ //not a photek channel)
+						if(sensors->at(iscope_chan).find("Photek")==std::string::npos  && sensors->at(iscope_chan).find(sensor_name)!=std::string::npos){ //not a photek channel)
 							v_h_eff_timing[pad_index]->Fill(x_adjust,y_adjust,0);
 						}
 					}
@@ -236,7 +238,7 @@ void map_plotter::makeMaps(){
 			for(int iscope_chan=0; iscope_chan<nchan;iscope_chan++)
 			{
 				int pad_index = pads->at(iscope_chan);
-				if(sensors->at(iscope_chan).find("Photek")==std::string::npos  && sensors->at(iscope_chan).find("HPK2")!=std::string::npos){ //not a photek channel)
+				if(sensors->at(iscope_chan).find("Photek")==std::string::npos  && sensors->at(iscope_chan).find(sensor_name)!=std::string::npos){ //not a photek channel)
 				v_h_eff[pad_index]->Fill(x_adjust,y_adjust,nhits);
 				if(ptkindex>=0) v_h_eff_timing[pad_index]->Fill(x_adjust,y_adjust,0); //Don't penalize for bad photek hits
 				}
@@ -263,7 +265,7 @@ void map_plotter::makeMaps(){
 
 			Convert1D(v_h_eff[ie],v_y_eff[ie],4,false,ie);
 			Convert1D(v_h_eff[ie],v_y_nhits[ie],2,false,ie);
-			cout<<"pad number : "<<ie<<" "<<v_map_nhits[ie]->Integral()<<endl;	
+			cout<<"pad number "<<ie<<": "<<v_map_nhits[ie]->Integral()<<" hits"<<endl;	
 			v_h_eff[ie]->Write();
 			v_h_eff_timing[ie]->Write();
 			v_map_eff[ie]->Write();
@@ -355,8 +357,8 @@ void map_plotter::makeMaps(){
 		ConvertTH1toTGraphAsymmErrors(v_x_eff[0],v_x_nhits[0],v_x_eff_graph,"all_chan");
 		ConvertTH1toTGraphAsymmErrors(v_x_eff[4],v_x_nhits[4],v_x_eff_graph,"chan4");
 		ConvertTH1toTGraphAsymmErrors(v_x_eff[5],v_x_nhits[5],v_x_eff_graph,"chan5");
-		ConvertTH1toTGraphAsymmErrors(v_x_eff[12],v_x_nhits[12],v_x_eff_graph,"chan12");
-		ConvertTH1toTGraphAsymmErrors(v_x_eff[13],v_x_nhits[13],v_x_eff_graph,"chan13");
+		ConvertTH1toTGraphAsymmErrors(v_x_eff[3],v_x_nhits[3],v_x_eff_graph,"chan3");
+		ConvertTH1toTGraphAsymmErrors(v_x_eff[6],v_x_nhits[6],v_x_eff_graph,"chan6");
 		for(int i=0;i<xSliceMin.size();i++){
 			PrintSummary1D(v_x_eff[0][i],Form("x_efficiency%i",i));
 			// cout<<"Printing graph"<<endl;
@@ -620,7 +622,7 @@ void map_plotter::FillSummaryMapCoarse(TH2F* h_target, vector<TH2F*> v_map, TH2F
 				int ipad = channel_map->GetBinContent(bin_map);
 				int source_bin=v_map[ipad]->FindBin(x,y);
 				int eff_bin=effmap->FindBin(x,y);
-				if(effmap->GetBinContent(eff_bin)>0.4){
+				if(effmap->GetBinContent(eff_bin)>0.9){
 
 					h_target->SetBinContent(ix,iy,scale_factor[ipad]*v_map[ipad]->GetBinContent(source_bin));
 				}
@@ -873,7 +875,7 @@ pair<int,int> map_plotter::nLGADHitsAndChannel(){
 	int ch=-1;
 	for(int j=0;j<nchan;j++){
 	//	if(j!=2) continue;//fix
-		if(sensors->at(j).find("Photek")==std::string::npos && sensors->at(j).find("HPK2")!=std::string::npos){ //not a photek channel
+		if(sensors->at(j).find("Photek")==std::string::npos && sensors->at(j).find(sensor_name)!=std::string::npos){ //not a photek channel
 			if(amp[j] > hitThres[pads->at(j)]){
 				nhits++;
 				if(nhits == 1) ch=j;

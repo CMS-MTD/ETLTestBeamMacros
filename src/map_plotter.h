@@ -64,13 +64,14 @@ public:
 	void PrintSummary1D(TH1F * h,TString name);
 	void PrintSummaryGraph(TGraphAsymmErrors * g,TString name);
 	TString tag;
+	TString sensor_name;
 	TString outDir;
 	TString chainPath;
 	bool debug;
 	vector<int> * run_start;
 	vector<int> * run_end;
 	static const int nchan=8;
-	static const int nchan_lgad=8;
+	// static const int nchan_lgad=8;
 	static const int npad=16;//3;//16;
 	vector<float> hitThres;
 	vector<float> residMeanX;
@@ -123,6 +124,7 @@ public:
 	float maxAmp;
 	float minTime;
 	float maxTime;
+	float delta_t_sign;
 
 	float zMinEff;float zMaxEff;
 	float zMinGain;float zMaxGain;
@@ -146,8 +148,8 @@ public:
 	Int_t nplanes;
 	Int_t nback;
 	Int_t npix;
-	Float_t y_dut[4];
-	Float_t x_dut[4];
+	Float_t y_dut[10];
+	Float_t x_dut[10];
 
 	Int_t run;
 	Int_t gconf;
