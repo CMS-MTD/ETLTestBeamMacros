@@ -4,31 +4,36 @@
 int main(int argc, char **argv)
 {
 	map_plotter mp;
-	mp.tag = "IHEP_W1_I_2x2"; //This defines names of all output files
-	mp.sensor_name="IHEP W1"; //Must be contained in sensor name as defined in AirTable. This determines which scope channels to consider.
+	mp.tag = "FBK_5x5"; //This defines names of all output files
+	mp.sensor_name="FBK 29"; //Must be contained in sensor name as defined in AirTable. This determines which scope channels to consider.
 	mp.chainPath = "root://cmseos.fnal.gov//store/group/cmstestbeam/SensorBeam2022/LecroyScope/RecoData/TimingDAQRECO/RecoWithTracks/v1/";
 	mp.debug=false;
 
+	mp.npad=26;
+	
 	//Define run range
 	//Note: will try to load every run in this range, even if it doesn't exist (so, expect some harmless complaints.)
-	mp.run_end = new vector<int>{53163};
-	mp.run_start = new vector<int>{52953};
-
+	// mp.run_end = new vector<int>{54239};
+	// mp.run_start = new vector<int>{53976};
+	mp.run_end = new vector<int>{55115}; 
+	mp.run_start = new vector<int>{54981}; //54364
 
 	//Define rotation angle and manual adjustments of x and y
-	mp.angle = new vector<float>{0}; //degrees
+	mp.angle = new vector<float>{-0.75}; //degrees
 	mp.x_offset= new vector<float>{0.0}; //mm
 	mp.y_offset= new vector<float>{0.0}; //mm
 	
 	mp.dut_index = 7; //center of telescope
 	mp.maxTrackChi2 = 50;
+	mp.minTrackPlanes=8;
+	mp.minTrackPix=1;
 
 	//Define xy binning and ranges [mm]
-	mp.nbinsX=200;//30;
-	mp.nbinsY=200;//10;
+	mp.nbinsX=80;//30;
+	mp.nbinsY=80;//10;
 	mp.rebinFactor=1; //coarser binning for maps of gain, timing (finer for efficiency)
-	mp.minX=-4.5; mp.maxX=0;
-	mp.minY=-6.25; mp.maxY=-1.75;
+	mp.minX=-3; mp.maxX=5;
+	mp.minY=-6; mp.maxY=2;
 
 	//Define amplitude, time binning and range, and scope saturation.
 	mp.saturation =380.;

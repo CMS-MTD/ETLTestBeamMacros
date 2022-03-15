@@ -72,7 +72,8 @@ public:
 	vector<int> * run_end;
 	static const int nchan=8;
 	// static const int nchan_lgad=8;
-	static const int npad=16;//3;//16;
+	// static const
+	int npad=16;//16;//3;//16;
 	vector<float> hitThres;
 	vector<float> residMeanX;
 	vector<float> residRangeX;
@@ -80,6 +81,8 @@ public:
 	vector<float> residRangeY;
 	int dut_index;
 	float maxTrackChi2;
+	float minTrackPlanes = 8;
+	float minTrackPix = 0;
 
 	float photekMin;
 	float photekMax;
