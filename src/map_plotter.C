@@ -152,6 +152,7 @@ void map_plotter::makeMaps(){
 		uint nentries= t->GetEntries();
 		cout<<"Loaded trees from runs "<<run_start->at(i_runrange)<<" through "<<run_end->at(i_runrange)<<", with "<<nentries<<" events."<<endl;
 		if(debug) nentries=100000;
+
 		for(int i=0;i<nentries;i++){
 			t->GetEntry(i);
 			if (i % 10000 == 0) {
@@ -161,13 +162,15 @@ void map_plotter::makeMaps(){
 
 		//Skip events without exactly one good track
 			// if(ntracks!=1 || npix < 1 || nback < 1 || chi2 > maxTrackChi2) continue;
-			if(ntracks!=1 || nplanes<8 || chi2 > maxTrackChi2) continue;
+			if(ntracks!=1 || nplanes<minTrackPlanes || npix<minTrackPix || chi2 > maxTrackChi2) continue;
 			// float xResid = abs(xResidBack - residMeanX.at(i_runrange));
 			// float yResid = abs(yResidBack - residMeanY.at(i_runrange));
 
 			// if(xResid>residRangeX.at(i_runrange) || yResid>residRangeY.at(i_runrange)) continue;
-
- 				
+			int ptkindex = indexGoodPhotekHit();
+			if (ptkindex== -1) continue;
+			// if( LP2_20[ptkindex] < -112e-9 || LP2_20[ptkindex]>-108e-9) continue;
+	
 
 			pair<int,int> nhits_and_channel =nLGADHitsAndChannel();
 			int nhits= nhits_and_channel.first;
@@ -184,7 +187,7 @@ void map_plotter::makeMaps(){
 				}
 			}
 
-			int ptkindex = indexGoodPhotekHit();
+			
 
 		//Get amplitude, time of real hit
 		//Fill hists
@@ -203,6 +206,7 @@ void map_plotter::makeMaps(){
 			v_h_eff[pad_index]->Fill(x_adjust,y_adjust,nhits); //should be nhits
 			v_h_amp[pad_index]->Fill(x_adjust,y_adjust,amp[channel]);
 			v_h_run[pad_index]->Fill(x_adjust,y_adjust,run);
+				
 			
 			//Additional selection for timing measurement
 			if(ptkindex>=0){

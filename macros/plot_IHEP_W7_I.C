@@ -11,6 +11,7 @@ int main(int argc, char **argv)
 
 	//Define run range
 	//Note: will try to load every run in this range, even if it doesn't exist (so, expect some harmless complaints.)
+
 	mp.run_end = new vector<int>{53814};
 	mp.run_start = new vector<int>{53549};
 
@@ -27,8 +28,9 @@ int main(int argc, char **argv)
 	mp.nbinsX=100;//30;
 	mp.nbinsY=100;//10;
 	mp.rebinFactor=1; //coarser binning for maps of gain, timing (finer for efficiency)
-	mp.minX=-5.0; mp.maxX=0.5;
-	mp.minY=-4.0; mp.maxY=-0.5;
+
+	mp.minX=-5.; mp.maxX=-0.1;
+	mp.minY=-5; mp.maxY=-0.1;
 
 	//Define amplitude, time binning and range, and scope saturation.
 	mp.saturation =380.;
@@ -44,6 +46,7 @@ int main(int argc, char **argv)
 	mp.photekMax=350;
 
 	// Define geometric boundaries for 1D "slices"
+
 	mp.xSliceMin={-3.5,-2.2};
 	mp.xSliceMax={-3.3,-1.8};
 	mp.ySliceMin={-3.2,-1.7};
