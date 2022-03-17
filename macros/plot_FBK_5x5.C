@@ -4,7 +4,7 @@
 int main(int argc, char **argv)
 {
 	map_plotter mp;
-	mp.tag = "FBK_5x5"; //This defines names of all output files
+	mp.tag = "FBK_5x5_2pix"; //This defines names of all output files
 	mp.sensor_name="FBK 29"; //Must be contained in sensor name as defined in AirTable. This determines which scope channels to consider.
 	mp.chainPath = "root://cmseos.fnal.gov//store/group/cmstestbeam/SensorBeam2022/LecroyScope/RecoData/TimingDAQRECO/RecoWithTracks/v1/";
 	mp.debug=false;
@@ -15,8 +15,8 @@ int main(int argc, char **argv)
 	//Note: will try to load every run in this range, even if it doesn't exist (so, expect some harmless complaints.)
 	// mp.run_end = new vector<int>{54239};
 	// mp.run_start = new vector<int>{53976};
-	mp.run_end = new vector<int>{55115}; 
-	mp.run_start = new vector<int>{54981}; //54364
+	mp.run_end = new vector<int>{55437}; 
+	mp.run_start = new vector<int>{54364}; //54364
 
 	//Define rotation angle and manual adjustments of x and y
 	mp.angle = new vector<float>{-0.75}; //degrees
@@ -26,12 +26,12 @@ int main(int argc, char **argv)
 	mp.dut_index = 7; //center of telescope
 	mp.maxTrackChi2 = 50;
 	mp.minTrackPlanes=8;
-	mp.minTrackPix=1;
+	mp.minTrackPix=2;
 
 	//Define xy binning and ranges [mm]
-	mp.nbinsX=80;//30;
-	mp.nbinsY=80;//10;
-	mp.rebinFactor=1; //coarser binning for maps of gain, timing (finer for efficiency)
+	mp.nbinsX=100;//30;
+	mp.nbinsY=100;//10;
+	mp.rebinFactor=2; //coarser binning for maps of gain, timing (finer for efficiency)
 	mp.minX=-3; mp.maxX=5;
 	mp.minY=-6; mp.maxY=2;
 
