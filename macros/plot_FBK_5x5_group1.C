@@ -4,7 +4,7 @@
 int main(int argc, char **argv)
 {
 	map_plotter mp;
-	mp.tag = "FBK_5x5_2"; //This defines names of all output files
+	mp.tag = "FBK_5x5_group1"; //This defines names of all output files
 	mp.sensor_name="FBK 29"; //Must be contained in sensor name as defined in AirTable. This determines which scope channels to consider.
 	mp.chainPath = "root://cmseos.fnal.gov//store/group/cmstestbeam/SensorBeam2022/LecroyScope/RecoData/TimingDAQRECO/RecoWithTracks/v1/";
 	mp.debug=false;
@@ -13,27 +13,23 @@ int main(int argc, char **argv)
 	
 	//Define run range
 	//Note: will try to load every run in this range, even if it doesn't exist (so, expect some harmless complaints.)
-	// mp.run_end = new vector<int>{54239};
-	// mp.run_start = new vector<int>{53976};
-	mp.run_end = new vector<int>{54563,54746,54970,55437}; 
-	mp.run_start = new vector<int>{54364,54564,54750,54977}; //54364
+	//conf 588
+	mp.run_end = new vector<int>{54563}; 
+	mp.run_start = new vector<int>{54364}; //54364
 
 	//Define rotation angle and manual adjustments of x and y
-	mp.angle = new vector<float>{-0.75,-0.75,-0.75,-0.75}; //degrees
-	mp.x_offset= new vector<float>{0.0,0.0115, -0.0025, 0.003}; //mm
-	mp.y_offset= new vector<float>{0.0,0.0, 0.008, 0.012}; //mm
+	mp.angle = new vector<float>{-0.75}; //degrees
+	mp.x_offset= new vector<float>{0.0}; //mm
+	mp.y_offset= new vector<float>{0.0}; //mm
 	
-
-
-
 	mp.dut_index = 7; //center of telescope
 	mp.maxTrackChi2 = 50;
 	mp.minTrackPlanes=8;
-	mp.minTrackPix=1;
+	mp.minTrackPix=2;
 
 	//Define xy binning and ranges [mm]
-	mp.nbinsX=123;//30;
-	mp.nbinsY=123;//10;
+	mp.nbinsX=100;//30;
+	mp.nbinsY=100;//10;
 	mp.rebinFactor=1; //coarser binning for maps of gain, timing (finer for efficiency)
 	mp.minX=-3; mp.maxX=5;
 	mp.minY=-6; mp.maxY=2;
@@ -48,17 +44,15 @@ int main(int argc, char **argv)
 	
 	//define threshold for LGAD hits, and range for photek
 	mp.hitThres=vector<float>(mp.npad+1,50.);
-
-	//weak amplifier in second scope chan
 	mp.channelSF = {1,1.11,1,1, 1,1,1,1};
 	mp.photekMin=200;
 	mp.photekMax=350;
 
 	// Define geometric boundaries for 1D "slices"
-	mp.xSliceMin={-3,-1.7};
-	mp.xSliceMax={-2.8,-1.5};
-	mp.ySliceMin={-4.8,-3.6};
-	mp.ySliceMax={-4.6,-3.4};
+	mp.ySliceMin={-2.1};
+	mp.ySliceMax={-1.9};
+	mp.xSliceMin={0.9};
+	mp.xSliceMax={1.1};
 
 	//Force range for colz maps. -1 is ignored.
 	// mp.zMinEff=0.6; mp.zMaxEff=-1.; 

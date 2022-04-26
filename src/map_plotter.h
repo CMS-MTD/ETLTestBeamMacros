@@ -75,6 +75,7 @@ public:
 	// static const
 	int npad=16;//16;//3;//16;
 	vector<float> hitThres;
+	vector<float> channelSF;
 	vector<float> residMeanX;
 	vector<float> residRangeX;
 	vector<float> residMeanY;
@@ -94,6 +95,8 @@ public:
 	//Divide interior of each pad in subsections (3x3 grid)
 	//Specify bounds on one corner, use avg pad width including dead region to extrapolate to other pads
 	//Plot boundaries at end for sanity check.
+
+
 
 	vector<float> y_div;
 	vector<float> x_div;
