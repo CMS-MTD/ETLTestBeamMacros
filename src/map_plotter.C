@@ -341,11 +341,11 @@ void map_plotter::makeMaps(){
 		
 		
 
-		FillSummary1D(v_x_eff,channel_map,true); 
-		FillSummary1D(v_x_nhits,channel_map,true); 
-		FillSummary1DCoarse(v_x_amp,v_x_eff,channel_map,true);
-		FillSummary1DCoarse(v_x_sigmat,v_x_eff,channel_map,true);
-		FillSummary1DCoarse(v_x_deltat,v_x_eff,channel_map,true);
+		//FillSummary1D(v_x_eff,channel_map,true); 
+		//FillSummary1D(v_x_nhits,channel_map,true); 
+		//FillSummary1DCoarse(v_x_amp,v_x_eff,channel_map,true);
+		//FillSummary1DCoarse(v_x_sigmat,v_x_eff,channel_map,true);
+		//FillSummary1DCoarse(v_x_deltat,v_x_eff,channel_map,true);
 
 
 		FillSummary1D(v_y_eff,channel_map,false);
@@ -362,10 +362,18 @@ void map_plotter::makeMaps(){
 		PrintSummaryMap(map_deltat_normalized,"map_deltat_norm",zMinDeltat,zMaxDeltat);
 		
 		ConvertTH1toTGraphAsymmErrors(v_x_eff[0],v_x_nhits[0],v_x_eff_graph,"all_chan");
-		// ConvertTH1toTGraphAsymmErrors(v_x_eff[4],v_x_nhits[4],v_x_eff_graph,"chan4");
-		// ConvertTH1toTGraphAsymmErrors(v_x_eff[5],v_x_nhits[5],v_x_eff_graph,"chan5");
-		// ConvertTH1toTGraphAsymmErrors(v_x_eff[3],v_x_nhits[3],v_x_eff_graph,"chan3");
-		// ConvertTH1toTGraphAsymmErrors(v_x_eff[6],v_x_nhits[6],v_x_eff_graph,"chan6");
+
+		ConvertTH1toTGraphAsymmErrors(v_x_eff[4],v_x_nhits[4],v_x_eff_graph,"chan4");
+		ConvertTH1toTGraphAsymmErrors(v_x_eff[5],v_x_nhits[5],v_x_eff_graph,"chan5");
+		ConvertTH1toTGraphAsymmErrors(v_x_eff[3],v_x_nhits[3],v_x_eff_graph,"chan3");
+		ConvertTH1toTGraphAsymmErrors(v_x_eff[6],v_x_nhits[6],v_x_eff_graph,"chan6");
+	       
+		ConvertTH1toTGraphAsymmErrors(v_y_eff[0],v_y_nhits[0],v_x_eff_graph,"all_chan");
+		ConvertTH1toTGraphAsymmErrors(v_y_eff[4],v_y_nhits[4],v_x_eff_graph,"chan4");
+		ConvertTH1toTGraphAsymmErrors(v_y_eff[5],v_y_nhits[5],v_x_eff_graph,"chan5");
+		ConvertTH1toTGraphAsymmErrors(v_y_eff[3],v_y_nhits[3],v_x_eff_graph,"chan3");
+		ConvertTH1toTGraphAsymmErrors(v_y_eff[6],v_y_nhits[6],v_x_eff_graph,"chan6");
+	       
 		for(int i=0;i<xSliceMin.size();i++){
 			PrintSummary1D(v_x_eff[0][i],Form("x_efficiency%i",i));
 			// cout<<"Printing graph"<<endl;
