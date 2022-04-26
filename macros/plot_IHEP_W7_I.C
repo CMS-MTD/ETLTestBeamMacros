@@ -12,25 +12,25 @@ int main(int argc, char **argv)
 	//Define run range
 	//Note: will try to load every run in this range, even if it doesn't exist (so, expect some harmless complaints.)
 
-	mp.run_end = new vector<int>{53814};
-	mp.run_start = new vector<int>{53549};
+	mp.run_end = new vector<int>{53814,53513};
+	mp.run_start = new vector<int>{53549,53500};
 
 
 	//Define rotation angle and manual adjustments of x and y
-	mp.angle = new vector<float>{0}; //degrees
-	mp.x_offset= new vector<float>{0.0}; //mm
-	mp.y_offset= new vector<float>{0.0}; //mm
+	mp.angle = new vector<float>{-0.5,-0.5}; //degrees
+	mp.x_offset= new vector<float>{5.0,5.0}; //mm
+	mp.y_offset= new vector<float>{0.0,0.0}; //mm
 	
 	mp.dut_index = 7; //center of telescope
 	mp.maxTrackChi2 = 50;
 
 	//Define xy binning and ranges [mm]
-	mp.nbinsX=100;//30;
-	mp.nbinsY=100;//10;
+	mp.nbinsX=200;//30;
+	mp.nbinsY=200;//10;
 	mp.rebinFactor=1; //coarser binning for maps of gain, timing (finer for efficiency)
 
-	mp.minX=-5.; mp.maxX=-0.1;
-	mp.minY=-5; mp.maxY=-0.1;
+	mp.minX= 5-4.75; mp.maxX= 5-0.75;
+	mp.minY=-4.25; mp.maxY=-0.25;
 
 	//Define amplitude, time binning and range, and scope saturation.
 	mp.saturation =380.;
@@ -47,8 +47,8 @@ int main(int argc, char **argv)
 
 	// Define geometric boundaries for 1D "slices"
 
-	mp.xSliceMin={-3.5,-2.2};
-	mp.xSliceMax={-3.3,-1.8};
+	mp.xSliceMin={5-3.5,5-2.2};
+	mp.xSliceMax={5-3.3,5-1.8};
 	mp.ySliceMin={-3.2,-1.7};
 	mp.ySliceMax={-2.7,-1.4};
 
