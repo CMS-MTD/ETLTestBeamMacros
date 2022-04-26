@@ -185,13 +185,14 @@ public:
 	TH2F * cosmetic_map;
 
 	vector<vector<TH1F*> > v_x_eff;
-    vector<TGraphAsymmErrors*> v_x_eff_graph;
+        vector<TGraphAsymmErrors*> v_x_eff_graph;
 	vector<vector<TH1F*> > v_x_nhits;
 	vector<vector<TH1F*> > v_x_amp;
 	vector<vector<TH1F*> > v_x_deltat;
 	vector<vector<TH1F*> > v_x_sigmat;
 
 	vector<vector<TH1F*> > v_y_eff;
+	vector<TGraphAsymmErrors*> v_y_eff_graph;
 	vector<vector<TH1F*> > v_y_nhits;
 	vector<vector<TH1F*> > v_y_amp;
 	vector<vector<TH1F*> > v_y_deltat;
