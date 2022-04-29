@@ -75,26 +75,26 @@ void map_plotter::makeMaps(){
 		vector<TH1F*> these_x_sigmat;
 		for(int islice=0;islice<ySliceMin.size();islice++){
 			name = Form("h_x_eff_%i_%i",ib,islice);
-			title = Form("%0.1f < y < %0.1f;x [mm]; Efficiency;",ySliceMin[islice],ySliceMax[islice]);
+			title = Form("%0.2f < y < %0.2f;x [mm]; Efficiency;",ySliceMin[islice],ySliceMax[islice]);
 			// title = Form(";x [mm]; Efficiency;");
 			these_x_eff.push_back(new TH1F(name,title,nbinsX,minX,maxX));
 			name = Form("h_x_nhits_%i_%i",ib,islice);
 			these_x_nhits.push_back(new TH1F(name,name,nbinsX,minX,maxX));
 
 			name = Form("h_x_amp_%i_%i",ib,islice);
-			title = Form("%0.1f < y < %0.1f;x [mm]; MPV [mV];",ySliceMin[islice],ySliceMax[islice]);
+			title = Form("%0.2f < y < %0.2f;x [mm]; MPV [mV];",ySliceMin[islice],ySliceMax[islice]);
 			// title = Form(";x [mm]; MPV [mV];");
 			if (ib==0) these_x_amp.push_back(new TH1F(name,title,nbinsX,minX,maxX));
 			else these_x_amp.push_back(new TH1F(name,title,nbinsX/rebinFactor,minX,maxX));
 
 			name = Form("h_x_deltat_%i_%i",ib,islice);
-			title = Form("%0.1f < y < %0.1f;x [mm]; DeltaT[s];",ySliceMin[islice],ySliceMax[islice]);
+			title = Form("%0.2f < y < %0.2f;x [mm]; DeltaT[s];",ySliceMin[islice],ySliceMax[islice]);
 			// title = Form(";x [mm]; DeltaT[s];");
 			if (ib==0) these_x_deltat.push_back(new TH1F(name,title,nbinsX,minX,maxX));
 			else these_x_deltat.push_back(new TH1F(name,title,nbinsX/rebinFactor,minX,maxX));
 
 			name = Form("h_x_sigmat_%i_%i",ib,islice);
-			title = Form("%0.1f < y < %0.1f;x [mm]; Time resolution [s];",ySliceMin[islice],ySliceMax[islice]);
+			title = Form("%0.2f < y < %0.2f;x [mm]; Time resolution [s];",ySliceMin[islice],ySliceMax[islice]);
 			// title = Form(";x [mm]; Time resolution [s];");
 			if (ib==0) these_x_sigmat.push_back(new TH1F(name,title,nbinsX,minX,maxX));
 			else these_x_sigmat.push_back(new TH1F(name,title,nbinsX/rebinFactor,minX,maxX));
@@ -341,11 +341,11 @@ void map_plotter::makeMaps(){
 		
 		
 
-		//FillSummary1D(v_x_eff,channel_map,true); 
-		//FillSummary1D(v_x_nhits,channel_map,true); 
-		//FillSummary1DCoarse(v_x_amp,v_x_eff,channel_map,true);
-		//FillSummary1DCoarse(v_x_sigmat,v_x_eff,channel_map,true);
-		//FillSummary1DCoarse(v_x_deltat,v_x_eff,channel_map,true);
+		FillSummary1D(v_x_eff,channel_map,true); 
+		FillSummary1D(v_x_nhits,channel_map,true); 
+		FillSummary1DCoarse(v_x_amp,v_x_eff,channel_map,true);
+		FillSummary1DCoarse(v_x_sigmat,v_x_eff,channel_map,true);
+		FillSummary1DCoarse(v_x_deltat,v_x_eff,channel_map,true);
 
 
 		FillSummary1D(v_y_eff,channel_map,false);

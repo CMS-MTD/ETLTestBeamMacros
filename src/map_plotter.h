@@ -154,8 +154,8 @@ public:
 	Int_t nplanes;
 	Int_t nback;
 	Int_t npix;
-	Float_t y_dut[14];
-	Float_t x_dut[14];
+	Float_t y_dut[10];
+	Float_t x_dut[10];
 
 	Int_t run;
 	Int_t gconf;
