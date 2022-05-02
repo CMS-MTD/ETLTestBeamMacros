@@ -137,7 +137,7 @@ vector<float> getFitRange(TH1F *h){
 pair<float,float> GetMPV(TH1F * h, float minAmp, float maxAmp, float hitThres){
 
     vector<float> start_parameters = getStartingParameters(h);
-    vector<float> range = getFitRange(h);
+    // vector<float> range = getFitRange(h);
     double fr[2]={minAmp,maxAmp};
     // double st[4]={0.2*hitThres,2.5*hitThres,5000,hitThres/3.};
     // double fr[2]={minAmp,range[1]};
