@@ -28,8 +28,8 @@ int main(int argc, char **argv)
 	mp.minTrackPix=2;
 
 	//Define xy binning and ranges [mm]
-	mp.nbinsX=100;//30;
-	mp.nbinsY=100;//10;
+	mp.nbinsX=400;//30;
+	mp.nbinsY=400;//10;
 	mp.rebinFactor=1; //coarser binning for maps of gain, timing (finer for efficiency)
 	mp.minX=-3; mp.maxX=5;
 	mp.minY=-6; mp.maxY=2;
