@@ -24,8 +24,8 @@ int main(int argc, char **argv)
 	mp.maxTrackChi2 = 50;
 
 	//Define xy binning and ranges [mm]
-	mp.nbinsX=100;//30;
-	mp.nbinsY=100;//10;
+	mp.nbinsX=200;//30;
+	mp.nbinsY=200;//10;
 	mp.rebinFactor=1; //coarser binning for maps of gain, timing (finer for efficiency)
 	mp.minX=-5.0; mp.maxX=0.5;
 	mp.minY=-4.0; mp.maxY=-0.5;
@@ -48,7 +48,8 @@ int main(int argc, char **argv)
 	mp.xSliceMax={-3.3,-1.8};
 	mp.ySliceMin={-3.2,-1.7};
 	mp.ySliceMax={-2.7,-1.4};
-
+	
+	mp.channels={11,12,13,14};
 	//Force range for colz maps. -1 is ignored.
 	// mp.zMinEff=0.6; mp.zMaxEff=-1.; 
 	mp.zMinEff=0.; mp.zMaxEff=-1.; 

@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 
 
 	//Define rotation angle and manual adjustments of x and y
-	mp.angle = new vector<float>{-0.5,-0.5}; //degrees
+	mp.angle = new vector<float>{-1,-1}; //degrees
 	mp.x_offset= new vector<float>{5.0,5.0}; //mm
 	mp.y_offset= new vector<float>{0.0,0.0}; //mm
 	
@@ -47,11 +47,11 @@ int main(int argc, char **argv)
 
 	// Define geometric boundaries for 1D "slices"
 
-	mp.xSliceMin={5-3.5,5-2.2};
-	mp.xSliceMax={5-3.3,5-1.8};
-	mp.ySliceMin={-3.2,-1.7};
-	mp.ySliceMax={-2.7,-1.4};
-
+	mp.xSliceMin={1.45,2.85};
+	mp.xSliceMax={1.75,3.15};
+	mp.ySliceMin={-3.15,-1.75};
+	mp.ySliceMax={-2.85,-1.45};
+	mp.channels={3,4,5,6};
 	//Force range for colz maps. -1 is ignored.
 	// mp.zMinEff=0.6; mp.zMaxEff=-1.; 
 	mp.zMinEff=0.; mp.zMaxEff=-1.; 
