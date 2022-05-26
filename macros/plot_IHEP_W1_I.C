@@ -48,7 +48,8 @@ int main(int argc, char **argv)
 	mp.xSliceMax={-2.8,-1.5};
 	mp.ySliceMin={-4.8,-3.6};
 	mp.ySliceMax={-4.6,-3.4};
-
+	
+	mp.channels={3,4,5,6};
 	//Force range for colz maps. -1 is ignored.
 	// mp.zMinEff=0.6; mp.zMaxEff=-1.; 
 	mp.zMinEff=0.; mp.zMaxEff=-1.; 

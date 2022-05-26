@@ -363,19 +363,22 @@ void map_plotter::makeMaps(){
 		
 		//channels of FBK_5x5_group4
 		ConvertTH1toTGraphAsymmErrors(v_x_eff[0],v_x_nhits[0],v_x_eff_graph,"x_all_chan");
-		ConvertTH1toTGraphAsymmErrors(v_x_eff[20],v_x_nhits[20],v_x_eff_graph,"x_chan20");
-		//ConvertTH1toTGraphAsymmErrors(v_x_eff[18],v_x_nhits[18],v_x_eff_graph,"x_chan18");
-		//ConvertTH1toTGraphAsymmErrors(v_x_eff[19],v_x_nhits[19],v_x_eff_graph,"x_chan19");
-		//ConvertTH1toTGraphAsymmErrors(v_x_eff[21],v_x_nhits[21],v_x_eff_graph,"x_chan21");
+		for(size_t k = 0; k < channels.size(); k++)
+		  ConvertTH1toTGraphAsymmErrors(v_x_eff[channels[k]],v_x_nhits[channels[k]],v_x_eff_graph,Form("x_chan%i", channels[k]));		
+		//ConvertTH1toTGraphAsymmErrors(v_x_eff[3],v_x_nhits[3],v_x_eff_graph,"x_chan3");
+		//ConvertTH1toTGraphAsymmErrors(v_x_eff[4],v_x_nhits[4],v_x_eff_graph,"x_chan4");
+		//ConvertTH1toTGraphAsymmErrors(v_x_eff[5],v_x_nhits[5],v_x_eff_graph,"x_chan5");
+		//ConvertTH1toTGraphAsymmErrors(v_x_eff[6],v_x_nhits[6],v_x_eff_graph,"x_chan6");
 		//ConvertTH1toTGraphAsymmErrors(v_x_eff[22],v_x_nhits[22],v_x_eff_graph,"x_chan22");
 		//ConvertTH1toTGraphAsymmErrors(v_x_eff[24],v_x_nhits[24],v_x_eff_graph,"x_chan24");
 		//ConvertTH1toTGraphAsymmErrors(v_x_eff[25],v_x_nhits[25],v_x_eff_graph,"x_chan25");
 		
 		ConvertTH1toTGraphAsymmErrors(v_y_eff[0],v_y_nhits[0],v_y_eff_graph,"y_all_chan");
-		ConvertTH1toTGraphAsymmErrors(v_y_eff[20],v_y_nhits[20],v_y_eff_graph,"y_chan20");
-		//ConvertTH1toTGraphAsymmErrors(v_y_eff[18],v_y_nhits[18],v_y_eff_graph,"y_chan18");
-		//ConvertTH1toTGraphAsymmErrors(v_y_eff[19],v_y_nhits[19],v_y_eff_graph,"y_chan19");
-		//ConvertTH1toTGraphAsymmErrors(v_y_eff[21],v_y_nhits[21],v_y_eff_graph,"y_chan21");
+		for(size_t k = 0; k < channels.size(); k++) 
+		  ConvertTH1toTGraphAsymmErrors(v_y_eff[channels[k]],v_y_nhits[channels[k]],v_y_eff_graph,Form("y_chan%i", channels[k]));
+		//ConvertTH1toTGraphAsymmErrors(v_y_eff[4],v_y_nhits[4],v_y_eff_graph,"y_chan4");
+		//ConvertTH1toTGraphAsymmErrors(v_y_eff[5],v_y_nhits[5],v_y_eff_graph,"y_chan5");
+		//ConvertTH1toTGraphAsymmErrors(v_y_eff[6],v_y_nhits[6],v_y_eff_graph,"y_chan6");
 		//ConvertTH1toTGraphAsymmErrors(v_y_eff[22],v_y_nhits[22],v_y_eff_graph,"y_chan22");
 		//ConvertTH1toTGraphAsymmErrors(v_y_eff[24],v_y_nhits[24],v_y_eff_graph,"y_chan24");
 		//ConvertTH1toTGraphAsymmErrors(v_y_eff[25],v_y_nhits[25],v_y_eff_graph,"y_chan25");

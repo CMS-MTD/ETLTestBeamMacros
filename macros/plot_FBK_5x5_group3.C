@@ -50,10 +50,11 @@ int main(int argc, char **argv)
 	mp.photekMax=350;
 
 	// Define geometric boundaries for 1D "slices"
-	mp.ySliceMin={-2.1};
-	mp.ySliceMax={-1.9};
-	mp.xSliceMin={0.9};
-	mp.xSliceMax={1.1};
+	mp.ySliceMin={-0.9, 0.4};
+	mp.ySliceMax={-0.4, 1};
+	mp.xSliceMin={2};
+	mp.xSliceMax={2.5};
+	mp.channels={20,1,2,3,4,5,26};
 
 	//Force range for colz maps. -1 is ignored.
 	// mp.zMinEff=0.6; mp.zMaxEff=-1.; 

@@ -29,8 +29,8 @@ int main(int argc, char **argv)
 
 
 	//Define xy binning and ranges [mm]
-	mp.nbinsX=80;//30;
-	mp.nbinsY=80;//10;
+	mp.nbinsX=200;//30;
+	mp.nbinsY=200;//10;
 	mp.rebinFactor=1; //coarser binning for maps of gain, timing (finer for efficiency)
 	mp.minX=-2; mp.maxX=2;
 	mp.minY=-2; mp.maxY=2;
@@ -53,7 +53,7 @@ int main(int argc, char **argv)
 	mp.xSliceMax={-0.55,0.75};
 	mp.ySliceMin={-0.75,0.55};
 	mp.ySliceMax={-0.55,0.75};
-
+	mp.channels={3,4,5,6};
 	mp.channelSF = {1,1,1,0.93, 1,1,1,1};
 
 

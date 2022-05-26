@@ -39,7 +39,7 @@ using namespace std;
 class map_plotter{
 
 public:
-
+  
 	pair<int,int> nLGADHitsAndChannel();
 	int indexGoodPhotekHit();
 	void InitBranches();
@@ -122,7 +122,9 @@ public:
 	vector<float> xSliceMax;
 	vector<float> ySliceMin;
 	vector<float> ySliceMax;
-
+	
+	//active channels
+	vector<int> channels;
 
 	float nbinsAmp;
 	float nbinsTime;
