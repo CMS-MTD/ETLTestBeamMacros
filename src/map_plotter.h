@@ -152,6 +152,8 @@ public:
 	Float_t chi2;
 	Float_t xResidBack;
 	Float_t yResidBack;
+	Float_t xSlope;
+	Float_t ySlope;
 	Int_t ntracks;
 	Int_t nplanes;
 	Int_t nback;
@@ -169,6 +171,12 @@ public:
 	vector<TH3F*> v_h_amp;
 	vector<TH3F*> v_h_time;
 	vector<TH3F*> v_h_run;
+
+	TH3F* h_xslope;
+	TH3F* h_yslope;
+	TH3F* h_chi2;
+	TH3F* h_nplanes;
+	TH3F* h_npix;
 
 	TH2F * channel_map;
 

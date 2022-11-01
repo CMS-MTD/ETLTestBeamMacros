@@ -17,18 +17,21 @@ int main(int argc, char **argv)
 
 	//Define rotation angle and manual adjustments of x and y
 	mp.angle = new vector<float>{0}; //degrees
-	mp.x_offset= new vector<float>{0.0}; //mm
-	mp.y_offset= new vector<float>{0.0}; //mm
+	mp.x_offset= new vector<float>{2.265}; //mm
+	mp.y_offset= new vector<float>{4.05}; //mm
 	
 	mp.dut_index = 7; //center of telescope
-	mp.maxTrackChi2 = 50;
+	mp.maxTrackChi2 = 20;
+	mp.minTrackPlanes=9;
+	mp.minTrackPix=2;
+
 
 	//Define xy binning and ranges [mm]
 	mp.nbinsX=200;//30;
 	mp.nbinsY=200;//10;
 	mp.rebinFactor=1; //coarser binning for maps of gain, timing (finer for efficiency)
-	mp.minX=-4.5; mp.maxX=0;
-	mp.minY=-6.25; mp.maxY=-1.75;
+	mp.minX=-2; mp.maxX=2;
+	mp.minY=-2; mp.maxY=2;
 
 	//Define amplitude, time binning and range, and scope saturation.
 	mp.saturation =380.;
@@ -44,10 +47,10 @@ int main(int argc, char **argv)
 	mp.photekMax=350;
 
 	// Define geometric boundaries for 1D "slices"
-	mp.xSliceMin={-3,-1.7};
-	mp.xSliceMax={-2.8,-1.5};
-	mp.ySliceMin={-4.8,-3.6};
-	mp.ySliceMax={-4.6,-3.4};
+	mp.xSliceMin={-0.75,0.55};
+	mp.xSliceMax={-0.55,0.75};
+	mp.ySliceMin={-0.8,0.55};
+	mp.ySliceMax={-0.65,0.75};
 	
 	mp.channels={3,4,5,6};
 	//Force range for colz maps. -1 is ignored.

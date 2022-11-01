@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 	// mp.run_start = new vector<int>{53976};
 	// conf 591
 	mp.run_end = new vector<int>{55437}; 
-	mp.run_start = new vector<int>{54977}; //54364
+	mp.run_start = new vector<int>{54977};//54977 //54364
 
 	//Define rotation angle and manual adjustments of x and y
 	mp.angle = new vector<float>{-0.75}; //degrees
@@ -25,13 +25,13 @@ int main(int argc, char **argv)
 	mp.y_offset= new vector<float>{0.012}; //mm
 	
 	mp.dut_index = 7; //center of telescope
-	mp.maxTrackChi2 = 50;
-	mp.minTrackPlanes=8;
-	mp.minTrackPix=2;
+	mp.maxTrackChi2 = 15;
+	mp.minTrackPlanes=10;
+	mp.minTrackPix=1;
 
 	//Define xy binning and ranges [mm]
-	mp.nbinsX=400;//30;
-	mp.nbinsY=400;//10;
+	mp.nbinsX=100;//30;
+	mp.nbinsY=100;//10;
 	mp.rebinFactor=2; //coarser binning for maps of gain, timing (finer for efficiency)
 	mp.minX=-3; mp.maxX=5;
 	mp.minY=-6; mp.maxY=2;

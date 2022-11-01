@@ -45,14 +45,14 @@ void CosmeticMap(TH2F * map, TString zaxis){
 void DrawCMS(bool is1D){
 	TLatex * tla = new TLatex();
     tla->SetTextSize(0.05);
-	if(!is1D)tla->DrawLatexNDC(0.07,0.92,"#font[62]{CMS} #scale[0.8]{#font[52]{Preliminary}}");
+	if(!is1D)tla->DrawLatexNDC(0.13,0.92,"#font[62]{CMS} #scale[0.8]{#font[52]{Phase-2 Preliminary}}");
 	// else tla->DrawLatexNDC(0.11,0.92,"#font[62]{CMS} #scale[0.8]{#font[52]{Preliminary}}");
 }
 
 void DrawProton(bool is1D){
   TLatex * tla = new TLatex();
-  tla->SetTextSize(0.05);
-  if(!is1D)tla->DrawLatexNDC(0.08,0.92,"FNAL 120 GeV proton beam");
+  tla->SetTextSize(0.035);
+  if(!is1D)tla->DrawLatexNDC(0.58,0.92,"FNAL 120 GeV proton beam");
   // else tla->DrawLatexNDC(0.1,0.92,"FNAL 120 GeV proton beam");
 }
 
